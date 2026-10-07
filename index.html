@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="A peer review of the Project Callisto reports on cold fusion, by researchers in condensed matter nuclear science.">
-<meta name="theme-color" content="#f4f5f1">
+<meta name="theme-color" content="#111614">
 <title>Callisto Review</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <style>
@@ -260,7 +260,8 @@ footer.end{border-top:1px solid var(--rule);margin-top:var(--space)}
   function cur(){ var t=root.getAttribute('data-theme'); if(t) return t; return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
   function paint(){ btn.textContent = cur()==='dark' ? '☼ Light' : '☼ Dark'; }
   btn.addEventListener('click',function(){ var n=cur()==='dark'?'light':'dark'; root.setAttribute('data-theme',n); try{localStorage.setItem('cr-theme',n)}catch(e){} paint(); });
-  try{ var s=localStorage.getItem('cr-theme'); if(s) root.setAttribute('data-theme',s);}catch(e){}
+  var saved=null; try{ saved=localStorage.getItem('cr-theme'); }catch(e){}
+  root.setAttribute('data-theme', saved || 'dark');   /* dark by default; the button still allows light */
   paint();
 })();
 </script>
