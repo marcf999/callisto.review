@@ -1,0 +1,1915 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Peer Review of the Project Callisto Reports on Cold Fusion</title>
+<meta name="description" content="Full text of the peer review of the Project Callisto reports on cold fusion.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: a deliberate mirror of callisto.report. Same paper, same ink, same accent, same 48rem prose column,
+   same uppercase date eyebrow, same dotted name list with black bars. The joke is in the content. */
+:root{
+  color-scheme:light;
+  --paper:#f4f5f1; --paper-raised:#fbfcf9; --paper-inset:#e8ece8;
+  --ink:#121817; --ink-soft:#4d5653; --ink-faint:#626e68;
+  --rule:#b6bcb8; --rule-strong:#6d7672;
+  --accent:#1d5d73; --accent-deep:#123e4e;
+  --header-bg:#f4f5f1;
+  --font:"IBM Plex Sans","Nebula Sans",Arial,Helvetica,sans-serif;
+  --prose:48rem; --content:78rem; --pad:clamp(1.25rem,4vw,4rem);
+  --space:clamp(2.5rem,4vw,4rem);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#111614; --paper-raised:#181e1b; --paper-inset:#202824;
+    --ink:#edf1ec; --ink-soft:#b8c0bb; --ink-faint:#8d9892;
+    --rule:#3f4944; --rule-strong:#727d77;
+    --accent:#76b5ca; --accent-deep:#9bcedd;
+    --header-bg:#111614;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#111614; --paper-raised:#181e1b; --paper-inset:#202824;
+  --ink:#edf1ec; --ink-soft:#b8c0bb; --ink-faint:#8d9892;
+  --rule:#3f4944; --rule-strong:#727d77;
+  --accent:#76b5ca; --accent-deep:#9bcedd;
+  --header-bg:#111614;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:1.125rem;line-height:1.58;-webkit-font-smoothing:antialiased}
+a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{color:var(--accent-deep)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:1rem;top:1rem;background:var(--paper-raised);padding:.5rem}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--header-bg);border-bottom:1px solid var(--rule)}
+.top .bar{max-width:var(--content);margin:0 auto;padding:0 var(--pad);height:3.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{font-weight:600;font-size:.95rem;text-decoration:none;color:var(--ink)}
+nav.menu{display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap}
+nav.menu a,nav.menu button{font-family:var(--font);font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--ink);background:none;border:0;padding:0;cursor:pointer}
+nav.menu a:hover,nav.menu button:hover{color:var(--accent)}
+@media (max-width:640px){nav.menu a.hide-sm{display:none}}
+
+main{max-width:var(--content);margin:0 auto;padding:0 var(--pad)}
+.section{padding-block:var(--space);border-top:1px solid var(--rule)}
+.section:first-child{border-top:0}
+.prose{max-width:var(--prose)}
+.eyebrow{font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 1.25rem}
+.eyebrow span+span::before{content:"·";margin:0 .6em}
+h1{font-size:clamp(2.6rem,7vw,4.5rem);font-weight:600;line-height:1.02;letter-spacing:-.02em;margin:0 0 1rem;text-wrap:balance}
+h2{font-size:clamp(1.6rem,3vw,1.92rem);font-weight:600;line-height:1.05;letter-spacing:-.01em;margin:0 0 1rem;text-wrap:balance}
+h3{font-size:1.2rem;font-weight:600;margin:1.75rem 0 .35rem}
+p{margin:0 0 1.1rem;color:var(--ink-soft)}
+p.lede{font-size:1.2rem;color:var(--ink);font-style:italic;margin-bottom:1.5rem}
+p.lede em{font-style:normal}
+p strong{color:var(--ink);font-weight:600}
+.cta{display:inline-block;margin-top:.25rem}
+blockquote{margin:1.5rem 0;padding-left:1.25rem;border-left:3px solid var(--rule-strong);color:var(--ink);font-style:italic}
+blockquote cite{display:block;font-style:normal;font-size:.9375rem;color:var(--ink-faint);margin-top:.4rem}
+
+/* Findings record: the mirror of their "Experimental record" */
+.record{display:grid;gap:clamp(1.5rem,3vw,2.5rem);margin-top:1.5rem}
+.finding{border-top:1px solid var(--rule);padding-top:1.25rem;display:grid;grid-template-columns:5.5rem 1fr;gap:1rem;align-items:start}
+.finding .k{font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint);padding-top:.3rem;font-variant-numeric:tabular-nums}
+.finding h3{margin:0 0 .4rem}
+.finding p{margin-bottom:.5rem}
+.finding .ref{font-size:.9375rem;color:var(--ink-faint)}
+@media (max-width:560px){.finding{grid-template-columns:1fr;gap:.25rem}}
+
+/* Numbers strip, their "scope" vernacular turned on them */
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.75rem 0}
+.fig{background:var(--paper-raised);padding:1.1rem 1.2rem;min-width:0}
+.fig b{display:block;font-size:1.9rem;font-weight:600;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums;color:var(--ink)}
+.fig span{font-size:.9375rem;color:var(--ink-faint)}
+
+/* Reports block */
+.reports{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1.5rem;margin-top:1.5rem}
+.report{background:var(--paper-raised);border:1px solid var(--rule);padding:1.5rem;min-width:0}
+.report h3{margin:0 0 .5rem}
+.report p{font-size:1rem}
+.links{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;margin-top:.75rem}
+.links a{font-size:.9375rem}
+.muted{color:var(--ink-faint);font-size:.9375rem}
+
+/* Reviewers: same dotted list, same black bars */
+.names{max-width:var(--prose);line-height:2;color:var(--ink);font-size:1.0625rem}
+.names .dot{color:var(--ink-faint);margin:0 .45em}
+.redact{display:inline-block;background:var(--ink);height:.95em;vertical-align:-.12em;border-radius:1px}
+.names small{display:block;font-size:.8125rem;color:var(--ink-faint);margin-top:1rem;line-height:1.5}
+.thanks{text-align:center;max-width:40rem;margin:2.5rem auto 0;color:var(--ink-soft)}
+
+footer.end{border-top:1px solid var(--rule);margin-top:var(--space)}
+.end .in{max-width:var(--content);margin:0 auto;padding:1.75rem var(--pad) 3rem;font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint)}
+.end .row{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.end .mid{text-align:center;margin:1.25rem 0}
+.end .note{text-transform:none;letter-spacing:0;font-size:.9375rem;text-align:center;color:var(--ink-faint)}
+.end .dedic{text-align:center;margin-top:2.5rem}
+.end .mark{display:block;margin:.6rem auto .8rem;width:64px;height:64px}
+</style>
+
+<style>
+.doc{max-width:var(--prose);margin:0 auto;padding-block:var(--space)}
+.doc h1{font-size:clamp(2rem,5vw,3rem);margin-top:0}
+.doc h2{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--rule)}
+.doc h3{font-size:1.15rem;margin-top:1.75rem}
+.doc img{max-width:100%;height:auto;display:block;margin:1.5rem auto .5rem}
+.doc table{border-collapse:collapse;width:100%;font-size:.8rem;margin:1.5rem 0;display:block;overflow-x:auto}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:.45rem .5rem;border-bottom:1px solid var(--rule)}
+.doc th{border-bottom:1px solid var(--rule-strong);color:var(--ink)}
+.doc ol{padding-left:1.4rem;font-size:.95rem}
+.doc ol li{margin-bottom:.6rem;color:var(--ink-soft);overflow-wrap:anywhere}
+.doc blockquote{font-size:1.02rem}
+.doc .titleblock p{color:var(--ink)}
+.doc .pageline{margin:2.5rem 0;border:0;border-top:1px solid var(--rule)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="top">
+  <div class="bar">
+    <a class="brand" href="index.html">Callisto Review</a>
+    <nav class="menu" aria-label="Sections">
+      <a href="index.html">Summary</a>
+      <a href="CALLISTO_PEER_REVIEW.pdf">PDF</a>
+      <a class="hide-sm" href="#reviewers-and-competing-interests">Reviewers</a>
+      <a class="hide-sm" href="#references">References</a>
+      <button id="theme" type="button" aria-label="Toggle dark mode">☼ Dark</button>
+    </nav>
+  </div>
+</header>
+<main id="main"><article class="doc" id="top">
+<h1 id="peer-review-of-the-project-callisto-reports-on-cold-fusion">Peer
+Review of the Project Callisto Reports on Cold Fusion</h1>
+<p>A review of the Callisto project’s “Electrochemical Loading Research
+Final Report” (September 2026) and its companion “High Pressure Loading
+Final Report” (February 2024), neither of which was submitted to peer
+review before publication</p>
+<p><strong>Reviewers</strong></p>
+<p>Jean-Paul Biberian, Francesco Celani, Daniel Fargue, Marc Fleury,
+Frank Gordon, David Nagel, Jacques Robert, Jacques Ruer, Edmund Storms,
+Paul Werbos, Dr.-Ing. Paul Wilhelm, ████████, ████████, ████████,
+████████, ████████</p>
+<p><em>A group of researchers in condensed matter nuclear science.
+Reviewers who preferred not to be named are shown redacted, as in the
+reports under review.</em></p>
+<p>October 2026</p>
+<hr class="pageline">
+<h2 id="preface">Preface</h2>
+<p><em>The Project Callisto reports describe a well-funded program that
+ran hundreds of experiments, mostly outside the parameter space the
+reports themselves identify as necessary for the effect they set out to
+test in low-energy nuclear reactions (LENR, also known as cold fusion).
+The program chose not to measure the nuclear product its own text
+identifies as decisive. The reports reach conclusions that exceed the
+information they provide, and they were published without peer review.
+They should be read for what they are: the closing memorandum of a
+private program, written for its sponsor, that failed to find excess
+heat under the conditions it chose to test. They should not be read as a
+scientific finding on whether low-energy nuclear reactions exist. That
+question is closed: they do, and what Callisto proves with its null
+results is that replication remains difficult and sporadic but in no way
+invalidates the positives. The recent peer-reviewed literature, together
+with the industrial and public programs now under way internationally,
+further suggests it is being answered by other means. The review that
+follows is simply the one the reports did not ask for or receive, yet
+deserve. A partial or full release of the Callisto data, which is
+missing from the report, would allow it to be completed, and might yet
+provide support for conclusions that are, at present,
+unsupported.</em></p>
+<hr class="pageline">
+<h2 id="abstract">Abstract</h2>
+<p>In September 2026 Project Callisto, a privately funded nine-year
+program, published two reports (381 and 226 pages) concluding that no
+anomalous heat exists in palladium-deuterium systems and recommending
+that LENR research be terminated. The reports were released without peer
+review, and as released they would not pass an editorial desk, let alone
+a referee. This document is the review they did not receive. We examine
+both reports against their own text, the primary literature and the
+current peer-reviewed record of research by scientists within the LENR
+community. Our first and principal finding is an omission: Callisto ran
+hundreds of sealed cells for weeks, states that its mass spectrometry
+could resolve helium-4 from deuterium, and never measured helium in a
+single cell. By the pressure report’s own conversion (1 J of fusion heat
+is 0.5 pmol of helium), a 10 mW excess sustained for a week would have
+left some 10¹⁵ helium atoms, a few parts per million, in a sealed
+headspace of a few tens of millilitres: about a thousand times the
+detection limit the report itself quotes for Miles, and several times
+the helium content of commercial deuterium gas. The cheapest and most
+decisive measurement of the program was available and was not made, so
+the null result rests entirely on calorimetry whose stated error budget
+(1 to 10 mW) describes pulse detectability under ideal conditions, not
+the steady-state accuracy of the instruments on which most cell-hours
+were accumulated. Its “Fleischmann-Pons replications” used ten times the
+original electrolyte concentration, open beakers with RTDs, no reported
+loading and durations of hours rather than months. No replication of a
+positive protocol reached the D/Pd loading of 0.9 that the report treats
+as a prerequisite; where the loading is documented at all, as in the
+McKubre replication, it sat at 81 to 86 %. The cells that did exceed 0.9
+were novel conditions of Callisto’s own design, and no helium was
+sampled in them either. The report’s account of its dealings with Edmund
+Storms does not fit Storms’ own public account. The report does not cite
+two peer-reviewed results of 2025 and 2026 (Physical Review X; Nature
+Communications) showing that, at the lowest beam energies,
+deuteron-deuteron reaction rates in metals exceed the bare-nucleus
+expectation by many orders of magnitude, and that electrochemical
+loading of palladium raises them further. The reports do not name their
+sponsor; we note what the public record says about who it is likely to
+be, and that the release coincided with the start of DARPA’s MARRS
+program and with the first public account by a former NSF program
+director of how federal funding was handled in 1989. We conclude that
+Callisto’s null result is real but confined to conditions the field has
+long said are insufficient, that a recommendation to terminate a field
+would not survive a referee who had read the reports’ own figures. We
+finish with a plaidoyer arguing that the case for substantially
+increased funding of the field is stronger in 2026 than at any time
+since 1989.</p>
+<hr class="pageline">
+<h2 id="introduction">1. Introduction</h2>
+<p>On September 8 2026 a group calling itself Project Callisto published
+two reports on the website callisto.report, presented as a systematic
+study of LENR (cold fusion) experiments. The first, the High Pressure
+Loading Final Report, is dated 11 February 2024 and runs to 381 pages;
+it describes gas-phase loading of palladium with deuterium at pressures
+up to 600,000 psi. The second, the Electrochemical Loading Research
+Final Report, carries the date 4 September 2026 on its cover and runs to
+226 pages; it describes electrolytic experiments with palladium cathodes
+in heavy water. Both conclude that no anomalous heat exists. The second
+ends with the sentence: “We therefore recommend terminating LENR
+research” (p. 189). Neither report was peer reviewed, which is the
+standard for work published in technical journals and the minimum one
+would expect before a sweeping recommendation of that kind.</p>
+<p>The present document is a peer review of those reports and of that
+conclusion. They were placed before the public with no referee; what
+follows is the review any journal would have sent them. It was written
+by a group of physicists, engineers, investors, scientists, public
+figures and electrochemists who have worked in condensed matter nuclear
+science for, in some cases, more than thirty years. Among the
+contributors are experimentalists who, from 1995 to 2000, worked at the
+French Atomic Energy Commission (CEA) in Grenoble on the two ICARUS 2
+cells that Martin Fleischmann personally supplied, with the instructions
+to operate them, when Fleischmann and Pons were at Sophia Antipolis near
+Nice. Those cells reproduced the Fleischmann-Pons excess heat, including
+the boil-off regime, and the results were published [1]; see also J.-P.
+Biberian, J. Condensed Matter Nucl. Sci. 21 (2016), on the ICARUS-2
+cells. Others have organized the international conferences of the field
+(ICCF) and know personally every experimenter whose work Callisto set
+out to replicate. Some of us are the experimenters whose work Callisto
+set out to replicate. We have operated the calorimetry that Callisto
+describes; that is how we can see where its description departs from
+what was actually done.</p>
+<p>We have chosen to sign as a group of reviewers. Everyone listed on
+the title page either contributed to this review or directly endorses
+its conclusions. We do not object to anonymity in itself; many of
+Callisto’s contributors withheld their names and that is their right. We
+object to something else, discussed in section 9. Everything in this
+document can be checked against the page numbers given, which is more
+than can be said for a recommendation to terminate a field of
+research.</p>
+<p>We have read both reports in full. This review concerns mainly the
+electrochemical report, which is the one that addresses the
+Fleischmann-Pons experiment and the work of people we know. We refer to
+the pressure report where it bears on the argument. Page numbers without
+further indication refer to the electrochemical report; “pressure
+report” refers to the February 2024 volume; “summary PDF” refers to the
+short summary of the electrochemical effort on the website.</p>
+<p>Our conclusion is simple. Callisto ran a very large number of
+experiments, mostly of its own design, under conditions that its own
+text shows did not meet the prerequisites stated by the authors it set
+out to test. It never measured helium, the nuclear product on which the
+strongest evidence in the field rests, although it had the instrument
+and the sealed cells to do so. Its account of its dealings with at least
+one of the researchers it claims to have replicated, Edmund Storms, does
+not fit his. And it does not cite two peer-reviewed results published in
+2025 and 2026, in Physical Review X and Nature Communications, that bear
+directly on its subject; the Nature Communications authors describe, in
+their own careful phrasing, “a previously unrecognized regime of
+low-energy nuclear reactions (LENR) in solids”. Both are publicly funded
+results obtained for a small fraction of what Callisto spent.</p>
+<p>The reports do not say who paid for them. The public record,
+discussed in section 9, points to a single private sponsor whose science
+adviser, Lowell Wood, is on the contributor list and whose 1989
+observation at Livermore the pressure report says “strongly motivated”
+the program. Lowell Wood was an intimate of Edward Teller and both knew
+LENR was real back in 1989. We believe Wood acted in good faith when he
+set out to replicate those results and secured the lavish funds to do so
+from their “private sponsor”. We have contacted members of the project,
+those whose names we could read, and found them open, amenable and
+well-meaning; we have no quarrel with them, they too acted in good
+faith. Their null result is real but narrow. Null results of this kind
+are abundant in the field, replication of the effects still being
+finicky, and they implicate only the conditions under which they were
+obtained. The recommendation to terminate a field of research, based on
+those null results, is not a scientific conclusion. We also find the
+timing of the release, two years after the program was shut down, hard
+to explain by anything in the reports themselves: it coincides with
+renewed public funding in the United States, with mainstream results in
+top-tier journals, and with the first public account, by one of us, of
+how federal funding of this field was handled in 1989 under the
+direction of Ed Teller and Julian Schwinger. Read as a submission, the
+reports would not clear an editorial desk, much less peer review: six
+hundred pages, no data, no loading where it matters, no nuclear product,
+and a recommendation that outruns the evidence by the width of a field.
+The sections that follow say where.</p>
+<h2 id="general-remarks">2. General remarks</h2>
+<p><strong>Who and when.</strong> The website states that the program
+ran from 2015 to 2024 with “more than 100” contributors, and the
+electrochemical report says its own work took place between 2017 and
+2024 (p. 11). The website lists 49 names; the rest are shown as black
+bars, “at their request”. Neither report carries an author’s name,
+although one of its authors was gracious enough to reach out to us in
+private. The acknowledgements section of the electrochemical report
+reads, in full: “[Redacted. Names may be added in a later revision of
+this document.]” (p. 225). No institution, no laboratory location and no
+source of funding is given anywhere. The pressure report thanks “the
+sponsor”, in the singular, for “extraordinary treasure and personal
+attention” (p. 379). Six pages of the pressure report (chapter 3,
+pp. 17-22) are marked “[Section Omitted]” without explanation. Lowell
+Wood appears in the list of contributors, and the pressure report states
+that his 1989 observation at Livermore “strongly motivated” the program
+(p. 239).</p>
+<p><strong>Who paid.</strong> Neither report names its sponsor. What the
+public record shows is this. Lowell Wood has been Bill Gates’ science
+adviser for two decades, through Intellectual Ventures and the Gates
+Foundation [15]. In November 2014 Wood accompanied Gates on a visit to
+the ENEA laboratory at Frascati, where Vittorio Violante’s group briefed
+them on its palladium-deuterium work [15]; Callisto was formed in 2015.
+Wood’s name is on the contributor list, his 1989 Livermore observation,
+in the pressure report’s words, “strongly motivated” its investigation
+(pressure report, p. 239), and the Appreciation chapter thanks a single
+sponsor for “personal attention”. We draw the inference that most
+readers will draw, and we label it as an inference. The same investor
+holds well-known stakes in nuclear fission and in solar; we do not imply
+a conflict of interest as we repeat that we believe they all acted in
+good faith, from Lowell Wood, who saw the inception of Cold Fusion at
+LLNL on down to the young scientists we have talked to. We note it only
+because it bears on a view, discussed in section 11, that energy may not
+be the main application of LENR. The reason it matters is not the name.
+It is that a document recommending the end of a field of research is the
+closing memorandum of a private program, written for its private
+sponsor, and is now being circulated publicly as if it were the
+authoritative findings of the scientific community.</p>
+<p><img src="enea.png" /></p>
+<p><em>Lowell Wood (left), Vittorio Violante (centre) and Bill Gates
+during the visit to ENEA Frascati, November 2014. ENEA photograph of the
+visit, published by ENEA [15].</em></p>
+<p><strong>Resources.</strong> This was a large, well-funded team with
+access to expensive equipment. They built their own calorimeters and
+data acquisition systems, including a 100-cell parallel array. The
+engineering, particularly on the pressure side, is of high quality and
+we say so without reservation; these were highly trained engineers. We
+are impressed, and not just by the money but also by the talent. We
+would rather build bridges to these individuals all the way up to their
+sponsor. The cost is not disclosed. From the stated headcount, duration
+and 45,000 square feet of laboratory, our own estimate of the outlay is
+in the hundreds of millions of dollars; at Bay Area rates the salaries
+alone, for a hundred people over nine years, are of the order of $250
+million. That is some fifteen times the combined budgets of the 2023
+ARPA-E LENR program ($10 million across eight teams, which Callisto
+itself cites) and the European CleanHME consortium (about €5.6 million
+from the EU), and about the cost of a small satellite mission, spent to
+arrive at “we recommend terminating LENR research”. There is something
+lurid about watching so much money, so many years and so much talent end
+in a conclusion so narrow.</p>
+<p><strong>Presentation.</strong> The reports are well written and
+pedagogical. Someone who does not know the field can follow the science,
+and the authors are clearly proficient at what they do. The website is
+professional and persuasive; several of us enjoyed reading it. It
+projects the image of high-quality work, which is exactly why it needs a
+detailed peer review rather than an outright dismissal.</p>
+<p><strong>Scope.</strong> The scope is narrow. Both reports concern
+palladium and deuterium, with one exception. The pressure report says on
+its first page: “We have not been looking for protium-based reactions,
+e.g., we have not pursued reports of LENR in nickel-protium systems.”
+The exception is a short test of the Kitamura-Takahashi PNZ7
+nickel-palladium-zirconia nanocomposite (pressure report, pp. 228-233):
+three calorimetric runs, one per material batch, comparing hydrogen and
+deuterium (pressure report, p. 231), with the loading measured in
+hydrogen only (p. 230), on material whose first batch still had all its
+nickel and palladium bound to zirconium and whose later batches were
+still not fully oxidised (pp. 229-231), and no helium. Celani’s wires
+and Mizuno’s reactors are cited in passing and not tested; Iwamura’s
+permeation transmutation is not addressed at all; plasma stimulation,
+glow discharge and arc, is absent. Six hundred pages on essentially one
+material system, studied by the method of 1989, end with a
+recommendation about the whole field. A narrow null result is not a
+licence to over-reach in the conclusion. The only conclusion the data
+support is “the Callisto study failed”.</p>
+<p><strong>Method.</strong> Callisto classifies its own replications
+(p. 185). Only two are called “exact”: Staker (2019) and Barham (2023).
+Eight others (Letts, Staker again, Storms, Energetics, McKubre, Miles,
+Hubler, Boss) were transplanted into Callisto’s own closed calorimeters
+with Callisto’s own sample holders. Fleischmann and Pons are described
+as “more loosely based on literature reports”, a few lines after the
+same page claims “we replicated all major published electrochemical LENR
+experiments” (p. 185). The founding experiment of the field was
+therefore never replicated as such. The SRI and ENEA heat-helium cells
+and the ICARUS-2 work are not on the target list at all.</p>
+<p><strong>Contact with the original authors.</strong> Callisto says it
+corresponded with Staker and Letts, and that Storms “later told us that
+key information existed outside of his publicly available materials” and
+supplied samples (summary PDF; p. 137). Edmund Storms has stated
+publicly that Callisto “never contacted me for advice” [13]. Michael
+Staker, asked by us, states that he was not contacted by the Callisto
+team, was not invited into its laboratory, and did not know who was
+attempting to replicate his experiment [23]. Section 7.5 sets the Storms
+accounts side by side; section 7.3 gives Staker’s. Callisto did not work
+with any of the original experimenters in the laboratory. Its own
+conclusions concede the point: “Replications with the original party
+involved have been reported to be successful” (p. 189). No such joint
+replication was attempted before recommending that the field be shut
+down.</p>
+<p><strong>Metrics.</strong> The report states that “there are two
+metrics widely used in the LENR field”, excess heat and COP (p. 23). In
+research the quantity of interest is the excess power with its
+uncertainty; the COP is an engineering figure of merit that hides the
+input power. As Staker puts it, a cell can have a very low COP and still
+produce a large excess heat per gram of palladium; the real measure is
+the comparison with a control cell that gives zero excess whatever the
+input, and raising the input only degrades one’s ability to see the
+excess [23]. Many of Callisto’s plots give COPs without the input power
+or an error bar.</p>
+<p><strong>Tone.</strong> The introduction states that “over-claiming,
+misinterpretation, and in some cases subterfuge, are directly
+responsible for the stigma and taboo around LENR” (p. 14), that positive
+results were “most likely due to … cherry-picking of data, or in the
+worst case, deception” (p. 14), that the work of Letts and Cravens is
+“mediocre at best” (p. 17), and that excess heat “appears to have been a
+red herring” (p. 11). This is not the language of a scientific report,
+and it is stated before any evidence is presented.</p>
+<p><strong>The recommendation.</strong> The pressure report says of its
+own conclusion: “Obviously, this is a belief, not a proven fact. It’s
+very hard to prove a negative” (p. 371). The short summary PDF on the
+website says: “We cannot prove that AHE does not exist.” The website
+says: “Although we didn’t test every possible corner of the parameter
+space, we consider our null result definitive in the spaces we did
+search.” The pressure report leaves itself three further exits: “We have
+not tried to replicate such electrolytic experiments … and can certainly
+not prove that they failed” (p. 373); “it is possible that LENRs are a
+purely surface phenomena … this may well explain why none of our
+gas-based experiments have detected LENR” (p. 376); and its archaeology
+detectors fail if the energy leaves as energetic particles (p. 377).
+None of these hedges appears in chapter 9 of the electrochemical report,
+which ends: “We therefore recommend terminating LENR research” (p. 189).
+The strength of the claim grows as one moves away from the data.</p>
+<h2 id="what-callisto-did-not-measure">3. What Callisto did not
+measure</h2>
+<p>Across 607 pages, neither report contains a single measurement of
+helium-4, helium-3 or tritium in an experiment. Not one. The pressure
+report is explicit: “1 joule of heat corresponds to 0.5 picomoles of
+helium. The former is easy to detect, the latter is not … detecting 24
+MeV of heat is doable, detecting a single helium atom is not.
+Accordingly, we have focused on heat measurements, not helium ones”
+(pressure report, p. 9). Its nuclear-detection chapter (pp. 362-368)
+uses germanium spectroscopy for prompt and delayed gammas and liquid
+scintillators for any ionizing radiation, the signatures the field has
+said since 1991 are absent, and finds them absent. The electrochemical
+report says of helium that “modern equipment is capable of resolving
+near-equimolar concentrations of deuterium gas and helium-4 (verified by
+Callisto)” (p. 14), and the website lists a Hiden Analytical
+mass-spectrometry system among the equipment. Callisto therefore had the
+instrument. It never used it on a single cell.</p>
+<p>This is the central omission of the program, and the arithmetic is
+Callisto’s own. Take the pressure report’s conversion, 0.5 pmol of
+helium per joule. A 10 mW excess, the upper end of the 1 to 10 mW error
+the electrochemical report claims for its closed cells, sustained for
+one week, is 6 kJ, or about 3 nmol of helium: some 2 × 10¹⁵ atoms,
+released into a sealed headspace of a few tens of millilitres. The
+electrochemical report itself quotes Miles’ detection limit as 6 × 10¹⁰
+atoms per millilitre (p. 138). Callisto ran hundreds of closed cells for
+weeks and, by its own account, more than 230 hours at loadings above 0.9
+(p. 167) and more than two months in single crystals above 0.9 (p. 171).
+In metal-sealed, leak-tested cells filled with low-helium gas, as SRI’s
+were, a helium measurement would have reached excess powers of a
+fraction of a milliwatt sustained over a week, far below the floor of
+the calorimetry, and it is immune to every calorimetric artifact the
+report catalogues: recombiner failure, RTD corrosion, electrolyte level,
+PEEK charring, diurnal swings. Helium has artifacts of its own
+(in-leakage, permeation, helium already in the metal and the gas), which
+is Callisto’s stated reason for not measuring it (pressure report,
+p. 9), and part of it stays in the cathode until the metal is cycled:
+SRI found 62 % in the gas at first and 104 ± 10 % after cycling [5].
+Those are controllable problems, and SRI controlled them. The report’s
+answer to this is that measuring helium at the parts-per-billion level
+against deuterium is “incredibly challenging” without concentration
+techniques (p. 14). It is challenging, and Miles, McKubre and Violante
+did it in the 1990s and 2000s with the budgets of a Navy laboratory, a
+contract research institute and a national agency, which were small
+fractions of Callisto’s. A helium mass spectrometer capable of resolving
+He-4 from D2 costs between a few hundred thousand and one million
+dollars.</p>
+<p>This matters because the heat-helium correlation is the field’s
+strongest nuclear evidence and the one that is immune to every
+calorimetric objection Callisto raises. Miles at China Lake [4], McKubre
+at SRI [5], and Apicella, Violante and colleagues at ENEA Frascati [6]
+independently found helium-4 in proportion to the excess heat, at
+roughly the rate expected for the D + D → ⁴He channel (within an order
+of magnitude in Miles’ 1993 paper; 104 ± 10 % at SRI once the cathode
+was cycled). Tritium was measured at the Bhabha Atomic Research Centre,
+at the National Cold Fusion Institute and at Los Alamos [7]. Callisto
+acknowledges the helium correlation on pages 16, 18 and 138, names
+atmospheric contamination as the objection, and never tests it. The
+electrochemical report’s own introduction says it best: “Nuclear
+products are unambiguous, whereas excess heat can be generated from”
+many sources (p. 11), and praises ARPA-E for shifting its program toward
+them. A program with these resources could have put a mass spectrometer
+on the effluent of every closed cell. It did not.</p>
+<p>The reports also record their own unexplained events and drop them
+because they did not recur: a single-crystal run with a COP of 1.05
+(BE1320, p. 175), and sporadic heat spikes in a passive cell at 100,000
+psi of deuterium at 50 °C whose source “we could never definitively
+locate” (pressure report, p. 268). The pressure report’s own Table 1
+(p. 215) records blistering in 17 of 19 polished foils loaded with D₂O
+against 0 of 10 loaded with H₂O, and the surrounding text says “no
+isotopic contrast is observed” (p. 214). Hydrogen and deuterium kinetics
+differ and we do not offer this as evidence of LENR; we offer it as an
+example of a caption that the report’s own table contradicts for
+polished foils (light-water foils did blister once roughened, 4 of 5),
+and of exactly the samples on which helium should have been sampled.
+Nano-explosions, described to us in private communication by members of
+the Callisto team, have been widely reported across the field, by Storms
+and by Mosier-Boss and Biberian among others. Non-recurrence is not a
+dismissal of a positive observation, just a failure to replicate it.</p>
+<h2 id="what-the-electrochemical-report-contains">4. What the
+electrochemical report contains</h2>
+<p>The report has nine chapters. Chapter 1 (pp. 7-19) opens with three
+pages on the climate crisis, then reviews Fleischmann and Pons, McKubre,
+Storms, Staker, Letts and Cravens, SPAWAR, the Naval Surface Warfare
+Center at Indian Head, Miles, and Google. Chapter 2 (pp. 20-46)
+describes calorimetry: open and closed cells, a commercial Setaram MS80
+Calvet calorimeter, a home-built “high-throughput” calorimeter (HTcal)
+based on a thermal bar, and an “ultra-high-throughput” array (UHTP) of
+100 isoperibolic cells. Chapter 3 (pp. 47-72) reviews every known method
+of measuring hydrogen loading in palladium and settles, as everyone in
+the field has, on the resistance ratio, supplemented by optical
+reflectance on thin films. Chapter 4 (pp. 73-86) is a density-functional
+study of palladium hydride. Chapter 5 (pp. 87-89) covers surface
+preparation. Chapter 6 (pp. 90-98) covers current density, temperature,
+surface deposits, loading enhancers and electromigration. Chapter 7
+(pp. 99-160) contains the replications. Chapter 8 (pp. 161-184) contains
+Callisto’s own experiments: mechanical stimulation, arsenic and ammonia
+additives, single crystals and alloys. Chapter 9 (pp. 185-189) gives the
+conclusions.</p>
+<p>The headline numbers are “over 500 samples” and “over 200,000 hours
+of total calorimetry time”, which the executive summary describes as “of
+a similar magnitude as all known LENR efforts combined” (p. 1). The
+report’s own Fig. 9.1 (p. 186) shows how those hours divide: about
+fifteen of some twenty-three calorimeter-years were spent in HTcal and
+about six and a half in the 100-cell array. The number that matters, the
+number of cell-hours spent at a loading above 0.9, is given nowhere in
+the report. We return to this in section 6.</p>
+<p>Two chapters deserve a word of recognition. The loading review in
+chapter 3 is a useful compilation. The DFT work in chapter 4 is
+competent and should be published independently, with two caveats: it
+models palladium hydride, not deuteride, and its 32-atom cell does not
+reproduce the two-phase region of the isotherm, as the authors admit
+(p. 83). Its conclusion that electrochemical loading has a ceiling of
+“70-80 %” (p. 86) is stated for cathodes without Tafel poisons, which
+the same chapter exempts (p. 85); arsenic takes Callisto’s cells above
+it. The point stands in a weaker form: without poisons, most of
+Callisto’s cathodes sat below the threshold the literature says is
+required.</p>
+<h2
+id="calorimetry-what-the-report-gets-wrong-about-fleischmann-and-pons">5.
+Calorimetry: what the report gets wrong about Fleischmann and Pons</h2>
+<h3 id="the-claimed-error">5.1 The claimed error</h3>
+<p>The central methodological claim of the report is on page 24:</p>
+<blockquote>
+<p><em>“By performing calorimetry using various devices, we concluded
+that based on the fundamental limitations listed above, errors on the
+order of 1 to 10 mW in closed system calorimeters and several hundred mW
+in open system calorimeters are to be expected.” (p. 24)</em></p>
+</blockquote>
+<p>This sentence is asserted, not derived, and it mixes two different
+quantities. The 1 to 10 mW figure is the detectability of a heat pulse
+under ideal conditions (pp. 32, 44). The steady-state accuracy of the
+instruments is another matter: HTcal is quoted at about ±2 % (summary
+PDF, p. 6); the 100-cell UHTP array screens for events of 100 mW or more
+(p. 35), was calibrated with a staircase from 150 mW to 2.5 W and then
+operated up to 5.6 W (pp. 42-44), above the range it was checked in, and
+the unknown position of the heat source “typically bounds the excess
+heat by ±10 %” once an excess is seen (p. 44); for the Setaram MS80, a
+differential instrument, equal input powers in the two cells produce
+false differential signals of 3 % when both are electrochemical, 10 %
+when one is a resistor, and “up to 20 %” when the heat source is in the
+headspace (p. 28), a position effect Callisto calibrates out with
+resistors (p. 27) but which sets the floor for any heat released where
+the resistor was not. The same chapter states that a 5 mW pulse “would
+be below the noise floor (driven by diurnal swings and recombiner
+variations) of a typical experiment” (p. 44). In the Barham replication
+the control cells varied by ±0.5 W on 15 W of input, and that 3 % became
+the detection limit. A report that opens with “1 to 10 mW” and then
+detects at 3 % of input has not derived its error budget; it has quoted
+its best case.</p>
+<p>The claim that open cells are good only to “several hundred mW” is
+equally unsupported. Fleischmann and Pons documented their open Dewar
+calorimetry in a 56-page paper [2] and a later paper on the boil-off
+regime [3]; their stated precision, which was contested at the time and
+should be read in their own words in the calibration section of [2], is
+of the order of a milliwatt on inputs of several watts. This was
+achieved by using calibrated thermistors rather than platinum resistance
+probes, by keeping the thermistors out of direct contact with the
+electrolyte, by including the heat capacity of the cell in the
+differential equation, and by calibrating with a heater pulse in every
+cycle. One of us operated, with Lonchampt at the CEA, the ICARUS cells
+built to this design, and their behaviour matched the published
+description [1].</p>
+<h3 id="the-verdict-rests-on-the-1989-note">5.2 The verdict rests on the
+1989 note</h3>
+<p>The conclusion of the Fleischmann-Pons section states:</p>
+<blockquote>
+<p><em>“With the very limited data provided in Fleischmann’s paper [26]
+– notably absent of any electrochemical or calorimetry figures – it is
+impossible to uncover the root cause of the discrepancies between their
+experimental outcome and our experimental outcomes.” (p. 104)</em></p>
+</blockquote>
+<p>Reference [26] is the 1989 preliminary note in the Journal of
+Electroanalytical Chemistry, which indeed contains almost no figures.
+The 1990 paper by Fleischmann, Pons, Anderson, Li and Hawkins in the
+same journal (volume 287, pages 293-348) is almost entirely calorimetry:
+the full heat-balance equation, the calibration procedure, the treatment
+of the heat capacity, the evaporation term, the radiative term, and page
+after page of temperature and power figures. Callisto summarizes that
+paper in its introduction (p. 15: Dewar cells, resistance-heater
+calibration, low and high current density) and has it in its
+bibliography, but its verdict on Fleischmann and Pons rests on the 1989
+note and never engages the 1990 heat balance, calibration or error
+treatment, which is where the claims actually rest. Grounding a verdict
+on the preliminary note while the full paper sits in one’s own
+bibliography is not an analysis of Fleischmann and Pons.</p>
+<h3 id="isoperibolic-calorimeters-and-temperature-probes">5.3
+Isoperibolic calorimeters and temperature probes</h3>
+<p>The report criticizes isoperibolic calorimeters on the grounds that
+the heat transfer to a probe in the electrolyte can change with bubbling
+and that “submerging temperature probes into the highly alkaline, often
+warm, electrolyte for extended durations can result in their
+degradation” (p. 25). Two remarks. First, Fleischmann and Pons did not
+use platinum resistance thermometers; they used thermistors, as Callisto
+itself notes on page 15, and in the ICARUS cells the thermistors were
+housed in glass sleeves, not bathed in the electrolyte. Second,
+Callisto’s own 100-cell UHTP array is an isoperibolic calorimeter with
+two RTDs immersed in the electrolyte, operated up to 5.6 W, above the
+top of its calibration staircase (pp. 39-44). The report’s chapter 9
+lists RTD failure in corrosive electrolyte as one of its own most
+frequent artifacts (pp. 186-187), and a single faulty RTD produced 64 %
+of all readings above the 100 mW threshold in its showcase 80-cell
+campaign (p. 123). The design objection Callisto raises against the
+field applies to its own array.</p>
+<h3 id="differential-calorimetry-against-a-blank">5.4 Differential
+calorimetry against a blank</h3>
+<p>The Setaram MS80 measures the difference between an active cell and a
+reference cell, which Callisto fills with a platinum cathode or light
+water. The report’s own calibration shows why this is a poor way to look
+for small effects: with identical input powers, the two positions differ
+by 3 to 20 % depending on where the heat is released (p. 28), because,
+in Callisto’s words, heat sources couple differently “to the thermopile
+and to the loss pathways” (p. 28). The correct procedure is to calibrate
+a given cell in a given position with a resistor and to compare the
+active run with that calibration. Comparing two cells adds the
+uncertainties of both. This affects the Hubler and Energetics
+replications, Callisto’s own Storms-type pellets, and part of the
+single-crystal work, all done in the MS80 (Storms’ own samples and many
+single crystals ran in HTcal, pp. 137 and 175). Note also that the MS80
+saturates at ±500 mW (p. 134), so the one large event seen in a Storms
+replication was never fully measured.</p>
+<h3 id="transients">5.5 Transients</h3>
+<p>The report states that “most LENR studies neglect to account for the
+time-dependent response of the calorimeter” (p. 25). Fleischmann and
+Pons did not neglect it: the heat capacity of the cell appears
+explicitly in their equation and the response to a heater pulse is used
+to extract it. Callisto, by contrast, admits in the Miles section that
+its convolution correction “was not implemented at the time of this
+experiment” (p. 140), and the COP traces in chapter 7 show large spikes
+at every power step. One cannot reproach others for a correction one
+applied only late in one’s own program.</p>
+<h3 id="closed-cells-are-not-free-of-artifacts">5.6 Closed cells are not
+free of artifacts</h3>
+<p>Callisto’s preference for closed cells with recombiners is reasonable
+in principle. In practice, the report documents that its closed cells
+produced “nearly 30 excursions” in a single 90-day run, all attributed
+to recombiner failure (p. 115); that a recombiner failure in a Miles
+replication led to a detonation that destroyed a calorimeter channel and
+corrupted the neighbouring ones (p. 139); that PEEK components charred
+inside a Storms replication (p. 134); and that recombiner malfunction is
+the most frequent source of false signals in all its closed systems
+(p. 186). The report then reasons as follows:</p>
+<blockquote>
+<p><em>“We deduce that previous researchers, often equipped with fewer
+diagnostics and less redundancy, must have encountered similar false
+signals.” (p. 189)</em></p>
+</blockquote>
+<p>This is an inference from Callisto’s own artifacts to everyone else’s
+data. It is not a measurement; it is an inference. Fleischmann and Pons
+and Miles did not use platinized-carbon recombiners in a pressurized
+headspace; the artifacts of that design are Callisto’s, not theirs.</p>
+<h2 id="loading-the-prerequisite-was-not-met-where-it-mattered">6.
+Loading: the prerequisite was not met where it mattered</h2>
+<p>The report adopts the field’s central empirical rule: “it is commonly
+accepted that ≥ 90 % deuterium loading is necessary to foster an
+environment conducive to AHE” (p. 90). McKubre’s conditions, which the
+report quotes (p. 104), are a loading above 0.9, a current density above
+100 mA/cm² and an incubation time of at least a week, all three
+together. What loading did Callisto achieve?</p>
+<p>Without additives, the natural maximum is “generally under 80 %”, 73
+% for deuterium in thin films (chapter 3 and summary PDF).</p>
+<p>With arsenic added within the first twenty minutes, peak loadings of
+92 to 98 % are reached, but most of these figures are for hydrogen in
+light water, deuterium loads lower, and “the longevity of this
+inhibition only lasted for two to three hours on average” (p. 96).</p>
+<p>The DFT chapter states that experimentally “the loading is observed
+to have an upper bound of approximately 0.7-0.85” (p. 85) and concludes
+to “a maximum 70-80 % hydride loading by electrochemical means in Pd”
+(p. 86), poisons excepted.</p>
+<p>Let us concede the strongest counter-evidence plainly, because the
+rest of the argument depends on it. Callisto did hold loadings above 0.9
+for long periods: closed cells with arsenic at 0 to 15 °C stayed at or
+above 90 % for more than 230 hours (p. 167), and single crystals under
+alternating current stayed above 90 % for “well over two months”
+(p. 171); by gas loading the pressure program reached 100 % (pressure
+report, p. 3). In none of these did Callisto see excess heat. Three
+things follow, and only three. These were new conditions of Callisto’s
+own devising, not replications of any positive protocol. Nobody sampled
+helium in them either. And they were a small part of the program.</p>
+<p>Now look at the replications. In the Fleischmann-Pons section no
+loading is reported at all. In the McKubre section the additives that
+gave McKubre his loading gave Callisto nothing (“we did not find a
+noticeable increase in loading with any of these additives”, p. 106),
+and Callisto’s own Fig. 7.6 (p. 108) gives the loading of those same
+calorimetric runs: means of 81 to 86 %, below the 0.9 the same report
+treats as the threshold. In the Staker section Callisto writes: “we
+concede our loadings did not remain as high as reported by Staker”
+(p. 119); the cells stayed “above 80 %”. In the Boss replication the
+palladium shell loaded to 75 to 80 % (p. 145). In the Hubler replication
+Callisto does not state its loading; Hubler’s own was 0.7 (p. 126). No
+replication of a positive protocol reached a documented loading of 0.9,
+and the report never says how many of its 200,000 hours were spent
+there. A null result obtained under conditions that the hypothesis says
+are insufficient is not evidence against the hypothesis.</p>
+<p>McKubre reported that 61 % of his cells exceeded 0.9 (p. 105, quoting
+the 1998 EPRI report). Callisto never states what fraction of its cells
+did. That single number would have told the reader more than the 200,000
+hours.</p>
+<p>There is a further point about loading that the report does not
+engage, and it goes back to the founding paper. Fleischmann and Pons
+argued in 1989 that the electrochemical overpotential at the cathode
+surface is equivalent to an enormous deuterium fugacity, a chemical
+potential that no static gas cell can approach: in that language, the
+600,000 psi of the pressure program, impressive as engineering, is a
+modest number. Electrochemistry is not a clumsy way of reaching the
+pressures of a gas rig; it reaches a regime the gas rig cannot. The
+electrochemical report nowhere states the overpotential at which its
+cells ran, and its bulk loadings, stuck near 0.8 in the replications,
+are what one expects when that regime is not reached. A gas-phase null
+and an electrochemical null at 0.8 are two measurements outside the
+regime the hypothesis specifies, and the report presents them as a
+search of the whole space.</p>
+<p>Loading is, moreover, only one of the material variables. The
+experimenters who saw the effect have said for thirty years that it
+depends on the batch of palladium. McKubre has said that his best
+results came from particular batches of wire, Fleischmann and Pons
+relied on Johnson Matthey palladium that was reliably active, and Storms
+found the same batch dependence and built his later work on the idea
+that a nuclear-active environment, a particular defect or surface
+structure, has to be present and can be manufactured [19]. There are
+many reasons to believe that the microscopic (indeed nanoscopic)
+preparation of the samples is key. Callisto’s materials chapter does not
+mention batch dependence, its replications used as-received commercial
+wire, without further details, and the pressure report concedes the
+point in its own words: “It’s our search over materials that is the
+least complete” (p. 375). Storms also notes, from his own close
+involvement with an earlier program of the same sponsor, that the most
+experienced calorimetrist in the field was within reach and that “a
+close collaboration was apparently stopped at a higher level” [20]. The
+same pattern, published recipes transplanted without the experimenter,
+recurs in Callisto.</p>
+<h2 id="the-replications-in-callistos-own-words">7. The replications, in
+Callisto’s own words</h2>
+<h3 id="fleischmann-and-pons-pp.-99-104">7.1 Fleischmann and Pons
+(pp. 99-104)</h3>
+<p>Callisto describes the original experiments correctly: 0.1 M LiOD,
+rods of 1, 2 and 4 mm diameter and 10 cm length, current densities from
+8 to 512 mA/cm², Dewar calorimeters (p. 99) with thermistors (p. 15),
+and prolonged polarisation (p. 99). It then describes its own “nominal
+replications”:</p>
+<blockquote>
+<p><em>“For these experiments, we applied high currents (&gt;500 mA) to
+large palladium samples (&gt;10 g) for various durations. These tests
+were done in open beakers with 35 ml of 1 M LiOD electrolyte, with the
+heat being measured in an isoperibolic calorimeter with an RTD
+temperature sensor placed in the electrolyte near the cathode. … Some
+experiments lasted less than an hour, while others ran for over 100
+hours.” (p. 100)</em></p>
+</blockquote>
+<p>Every parameter is wrong. The electrolyte is ten times too
+concentrated. The cathode is specified by mass only, so the current
+density is unknown; “&gt;500 mA” on “&gt;10 g” fixes no current density:
+at exactly 500 mA on 10 g it would lie between about 15 mA/cm² (1 mm
+wire) and 120 mA/cm² (a compact lump). The calorimeter is an open beaker
+with an RTD, which by Callisto’s own standard is good to “several
+hundred mW”. No loading is reported. And the durations are hours.
+Fleischmann and Pons charged their cathodes for weeks and reported
+excess heat only after prolonged polarisation, typically weeks to months
+[2]; Callisto’s own McKubre section quotes an incubation time of at
+least a week (p. 104). The remaining Fleischmann-Pons “groupings” are a
+test of machine-shop cutting fluid, oxygen bubbled under the cathode,
+and discharges at “100 W and several kilowatts (up to 15 A, 300 V)” that
+produce a glowing electrode and a plasma (pp. 100-103). None of this is
+the Fleischmann-Pons experiment.</p>
+<p>The pressure report explains where the high-power experiments came
+from. Lowell Wood’s 1989 experiment at Livermore ended with a glowing
+cathode and a shattered quartz cell (pressure report, p. 241); “after
+Callisto electrochemical loading spent 3 years running LLNL replications
+without (yet) observing AHE, Callisto investigated potential classical
+(non-nuclear) explanations and found plasma electrolysis to provide a
+reproducible explanation” (pressure report, p. 239). How those three
+years relate to the forty “Fleischmann-Pons replications” counted on the
+website is not stated anywhere.</p>
+<p>The section’s own conclusion reads: “Whether this is due to
+insufficient details provided in the original studies or because the
+effect itself is not grounded in physical reality remains technically
+inconclusive” (p. 104), followed two sentences later by the claim that
+the testing “strongly suggests that no LENR effect can be reliably
+observed under any reasonable and experimentally obtainable conditions”.
+The two sentences sit uneasily together.</p>
+<h3 id="mckubre-pp.-104-108">7.2 McKubre (pp. 104-108)</h3>
+<p>Several of us knew Mike McKubre from the mid-1990s onward. Callisto
+rightly describes his SRI work as the best documented in the field: 3 mm
+rods annealed at 850 °C, 1 M LiOD with silicon or aluminium additives,
+current densities of 300 to 600 mA/cm², closed mass-flow calorimeters
+accurate to 50 mW or 0.5 %, and durations of hundreds to thousands of
+hours. Callisto replaced the 3 mm rods with 0.5 mm wires of 28 mm
+length, replaced the flow calorimeter with HTcal, and used additives
+that in its hands produced no loading enhancement (p. 106). It did match
+the current density (about 0.1 to 0.8 A/cm²) and ran for several hundred
+hours (p. 107). Callisto’s Fig. 7.6 (p. 108) shows the loading in these
+same runs: means of 81 to 86 %, below 0.9. Two of the three McKubre
+conditions were met and the third, the one McKubre said was decisive,
+was not; the null tells us little about McKubre.</p>
+<p>Callisto also quotes McKubre’s 1998 remark that “during times when
+axial current is passing both loading information and calorimetry were
+seriously inaccurate” (p. 105) and repeats it in its conclusions as if
+it were a retraction of the 1994 results. It is not. The report’s own
+page says the remark comes from a later experiment with axial current,
+and McKubre’s helium measurements, which Callisto mentions on page 16
+and does not discuss, are the answer to the calorimetric objection.</p>
+<h3 id="staker-pp.-109-124">7.3 Staker (pp. 109-124)</h3>
+<p>This is the longest section and the one Callisto calls an exact
+replication. More than 200 experiments were run. Three things stand out.
+First, Callisto’s own direct open-cell replication shows a suppressed
+COP from the start until about 1000 hours, which the authors attribute
+to “changes in the electrolyte level” (p. 113); their calorimeter, in
+other words, was not stable over the very period in which Staker saw his
+effect. Second, the explanation offered for Staker’s result is foaming
+that exposes 30 to 40 % of the cathode; Callisto observed this in its
+own cells, and “Staker denied that any foaming occurred in his system”
+(summary PDF). A hypothesis about someone else’s cell is not a
+demonstration. Third, and decisive, is the loading: “we concede our
+loadings did not remain as high as reported by Staker” (p. 119).
+Staker’s claim requires loading above 0.9 for weeks; Callisto’s cells
+were above 0.8.</p>
+<p>Staker himself, asked by us, is blunter [23]. He was not contacted by
+Callisto, was not invited into its laboratory, and did not know who was
+replicating him; the first he heard of it was the published report. A
+Callisto author had earlier funded a separate university group to
+replicate his work, and Staker coached that group until it declined to
+follow his set-up instructions, at which point he withdrew and warned
+that a failure would not be an exact replication; to his knowledge that
+effort went nowhere. On Callisto’s own replication his verdict is that
+it lacked the conditions that matter: the dislocation density needed to
+form the delta phase locally and reach the proper local D/Pd ratio;
+electromigration currents “orders of magnitude too low” to enhance the
+loading; and no reported monitoring of the resistance ratio, so that the
+D/Pd ratio of the cells was never known. In his words: “If you do not
+get above 0.9 D/Pd ratio, game over.” He adds a point about the
+published figures: Callisto writes that his time axes, marked “data
+taken every 15 minutes”, could not be deciphered, yet one of its authors
+telephoned him, was walked through the figures, and said he understood
+them. Staker also reads Callisto’s dismissal of his vacancy-ordered
+(SAV) phases as “based on his own theory” against the textbook: Fukai
+showed that the superabundant-vacancy phase, once formed, remains stable
+at ambient conditions, and that the metal-hydrogen phase diagrams in
+common use are metastable ones that omit the vacancy phases; a loading
+expressed as a percentage, rather than as a D/Pd ratio, does not even
+locate a sample on that diagram. Finally, on the sample holder of Fig.
+7.8 (p. 112), he notes that the ends of the wire where it meets the
+copper leads do not appear to be masked, which lets copper into the
+electrolyte, and that the RTDs appear to sit in the electrolyte; either,
+in his experience, is enough to ruin the run.</p>
+<p>A word on the record. Staker published a corrigendum to his 2023
+paper in the International Journal of Hydrogen Energy that lowered the
+reported COP from 2.0 to 1.67 while raising the power density (p. 110).
+Callisto describes this as a claim he “retracted” (p. 159) and as a
+result “redacted” (p. 124). A corrigendum is not a retraction, and a
+group that reproaches the field for loose language should know the
+difference.</p>
+<p>We would also ask Callisto whether the rails on either side of the
+wire in its sample holder (Fig. 7.8c, p. 112) shadow the current
+distribution on the cathode.</p>
+<p>The 80-cell UHTP campaign inspired by Staker (pp. 122-124) ran for 50
+days at 130 mW to 1 W with 3 A of axial current. Its histogram of excess
+heat showed values above 100 mW, and “upon closer inspection we found
+that a faulty RTD in one of the cells contained 64 % of all samples ≥
+100 mW” (p. 123). The instrument on which the program’s statistics rest
+produced its largest apparent signal from a broken sensor.</p>
+<h3 id="hubler-pp.-124-127">7.4 Hubler (pp. 124-127)</h3>
+<p>Two runs of 200 hours in the MS80, against a platinum blank, with the
+differential errors discussed in section 5.4. Hubler’s reported excess
+of 90 mW on 42 mW of input is a difficult measurement and Callisto’s
+criticisms of his data deserve an answer from him. Two runs in a
+differential calorimeter are not a replication campaign.</p>
+<h3 id="storms-pp.-130-137">7.5 Storms (pp. 130-137)</h3>
+<p>We know Edmund Storms well; he has worked in this field since the
+first day and is a careful experimentalist. He is also a named reviewer
+here. Callisto set out to replicate his nanoporous pressed-palladium
+samples from a conference paper. Its own account: the powder was pressed
+with 1.5 % by weight of a stearamide lubricant that Callisto chose
+because it “suspected” this was what Storms meant by “inert material”
+(p. 132); the pellets were sintered at 800 °C instead of the 900 to 1000
+°C Storms specifies, because Callisto’s pellets embrittled (p. 133); and
+the runs were done in the MS80 against a platinum blank. One run
+produced a differential signal of 500 mW, a COP of 2.67, that saturated
+the instrument, “so the event likely produced more heat than we
+measured” (p. 134). It was attributed to charring of the PEEK holder
+after a post-mortem inspection. Charring PEEK requires a local
+temperature of several hundred degrees inside a cell at 30 °C; the
+report offers oxygen liberated from the oxidized palladium as the fuel
+and does not explain the ignition. The summary PDF describes the Storms
+work as “limited attempts” and says that by the time Storms told them
+key information existed outside his publications “we were winding up”
+(summary PDF, p. 14).</p>
+<p>Then comes the passage on which the whole section rests. The report
+says that Storms “later told us that key information existed outside of
+his publicly available materials” (summary PDF), that “two years
+following this investigation, we received samples from Storms himself”,
+that these ran in HTcal without heat, and that “there was no commentary
+provided by Storms as to why we did not see heat with the samples he
+claimed would give us the result” (p. 137). The reader is meant to
+conclude that Storms was consulted, supplied his best material, and fell
+silent when it failed.</p>
+<p>Here is what Storms wrote, under his own name, three days after the
+report appeared:</p>
+<blockquote>
+<p><em>“What an incredible waste of time and effort. They never
+contacted me for advice. Was anyone here contacted? Tuckerman knew of my
+success because he bought my calorimeter in 2024. However, he was unable
+to figure out how to use it. During his interaction with me he never
+asked how I made active material or about any information about my
+experience. I can only assume they had the arrogant belief that only
+they knew how to do proper studies and all the other claims must be the
+result of incompetence.” (E. Storms, LENR-Forum, post #7, 11 September
+2026 [13])</em></p>
+</blockquote>
+<p>The report’s account does not fit Storms’ own public account.
+Callisto says it received samples from Storms and heard nothing when
+they failed; Storms says that nobody at Callisto asked him for advice or
+how he makes active material, and he dates his only dealings with a
+Callisto contributor, David Tuckerman, to 2024, when Tuckerman purchased
+his calorimeter. The pressure report puts the end of the LENR search at
+1 November 2023 (p. 378), but the electrochemical work continued into
+2024 (p. 11; Fig. 9.1), so we cannot tell whether those dealings were
+Callisto’s, and we do not attribute them. We note only that the report’s
+phrase “samples he claimed would give us the result” describes a claim
+that, on Storms’ account, he was never asked to make, and that a
+reproach of “no commentary” presupposes a question. If there is no
+question, there is no answer and Storms was never contacted for advice.
+Callisto’s chapter 9 lists among the sins of the field that “important
+details [are] made available only in personal communication” (p. 189),
+citing Storms. Personal communication was on offer.</p>
+<p>What can be said is this. A program that presses pellets with a
+lubricant of its own choosing, sinters them at a temperature of its own
+choosing because the specified one did not work in its hands, and runs
+them in a differential calorimeter that saturated on the one large
+event, has tested its own pellets. It has not tested Storms.</p>
+<h3 id="miles-pp.-137-143">7.6 Miles (pp. 137-143)</h3>
+<p>Some of us knew Mel Miles for many years and published with him. He
+was an extremely cautious experimentalist, a world-class one, and one of
+the few who reproduced Fleischmann and Pons with precision and success.
+Callisto had palladium-boron rods made by a commercial vendor, verified
+the composition, and ran them in closed HTcal cells with 0.1 M LiOD in
+six experiments, only the first of whose duration is given (about 120
+hours, p. 139; Table 7.1, p. 143); in that one a cell detonated about 80
+hours in (p. 139). Miles used open cells with isoperibolic calorimetry,
+thermistors, and weeks of electrolysis; his positive results came in 28
+of 94 experiments, mostly with the Pd-B material from the Naval Research
+Laboratory. Callisto writes that “Miles’ report lacks light water
+control experiments” (p. 143). The title of his 1993 paper is
+“Correlation of excess power and helium production during D₂O and H₂O
+electrolysis” [4]; the light-water controls produced neither heat nor
+helium. More to the point, Callisto never addresses the result for which
+Miles is known: in his review of the campaigns, eighteen of twenty-one
+cells with excess heat showed helium-4 in the effluent gas, twelve of
+twelve without excess heat showed none, and the rate of 10¹⁰ to 10¹²
+atoms per second per watt brackets the value expected for D + D → ⁴He +
+23.8 MeV [4]. The report mentions this correlation on pages 16, 18 and
+138, raises atmospheric contamination as the objection, and leaves it
+there.</p>
+<h3 id="navy-co-deposition-boss-and-barham-pp.-143-150">7.7 Navy
+co-deposition: Boss and Barham (pp. 143-150)</h3>
+<p>Thirteen experiments to replicate the Szpak and Mosier-Boss
+co-deposition from a patent, with the electrolyte changed from lithium
+chloride to lithium deuteroxide at the end because chlorine destroyed
+the recombiners (p. 146). The palladium deposit loaded to 75 to 80 %.
+The CR-39 track detectors, the infrared imaging and twenty years of
+SPAWAR (military) peer-reviewed publications are dismissed in a
+paragraph on alkaline etching of the plastic. The Barham replication is
+the better one: about fifty runs at 15 W for 12 hours in an open Seebeck
+calorimeter built to the Navy’s dimensions. The detection limit was set
+by the control cells at ±0.5 W, or 3 % of the input. Callisto’s main
+argument against the Navy result is a re-analysis of the Navy’s own
+supplementary temperature data (pp. 144-145) placing the elevated
+temperature near the anode. We note that Callisto’s own cells lost 30 ml
+of electrolyte in 12 hours at 15 W (p. 150), which by its own account
+makes open-cell calorimetry unreliable.</p>
+<p>Frank E. Gordon, who led the SPAWAR program and co-authored [21],
+responds for the group, as one of the reviewers, as follows. The
+Callisto report makes several statements that would not pass peer review
+in a reputable journal. By contrast, the Navy SPAWAR group has more than
+thirty peer-reviewed publications reporting chemical, thermal and
+physical effects, in the Journal of Electroanalytical Chemistry, Physics
+Letters A, Fusion Technology, Thermochimica Acta, Naturwissenschaften,
+the European Physical Journal Applied Physics, Electrochimica Acta and
+Radiation Measurements among others, plus two chapters in the American
+Chemical Society’s Low Energy Nuclear Reactions Source Books [21].
+Callisto attributes the micro-volcanoes on the palladium surface to
+hydrogen bubbles building up and escaping, and states that similar
+features were observed in its own work. That explanation does not
+account for the solidified molten metal around the rim of the features,
+which points to a localized and significant heat event; nor for the
+SEM-EDX analyses that detect, at the rims of the pits, elements that
+were not in the cell originally, in concentrations that vary from site
+to site. These are some of the most impressive transmutation
+observations in the field, which has many. If Callisto’s cells produced
+surface features identical to SPAWAR’s, perhaps they did produce the
+effect and the analysis was incomplete. Callisto also ignores the
+infrared video of the co-deposited electrode, which documents real-time,
+localized flashes of much higher temperature, with the metal hotter than
+the solution; the energy in these discrete flashes has been
+independently estimated to be of nuclear origin, and calorimetry
+integrated over a cell would not resolve them. At the suggestion of
+Lowell Wood, the SPAWAR team co-deposited palladium-deuterium directly
+onto the face of a poled ferroelectric transducer, which responds to
+both pressure and heat; on the oscilloscope the transducer showed
+downward pressure spikes followed by upward temperature signatures. The
+images of these discrete hot spots and pressure spikes are, in the view
+of the SPAWAR members among us, some of the most compelling evidence in
+the record, and none of it is visible to a calorimeter. And Callisto
+dismisses the CR-39 data although CR-39 is a standard solid-state
+detector in the nuclear industry and the SPAWAR tracks were analysed by
+outside experts, including the author of a textbook on CR-39 analysis,
+with the conclusion that energetic particles were being emitted. We do
+not agree with Callisto’s conclusion that there was “little merit in
+pursuing further replication of the Boss experiments”. We stand by our
+published, peer-reviewed data, and we hold that the combination of those
+papers, the infrared video, the transducer data and the CR-39 tracks is
+compelling evidence that nuclear reactions are present, and that the
+work should be continued.</p>
+<h3 id="energetics-pp.-151-154">7.8 Energetics (pp. 151-154)</h3>
+<p>Energetics used palladium foils prepared by Violante at ENEA Frascati
+and a specific current waveform. Callisto used “as-received palladium
+wires (Johnson Matthey, 0.5 mm diameter, 28 mm length)” in the MS80
+(p. 154), with a waveform reconstructed “as best we could understand
+them” (summary PDF), at an average current density of 8 mA/cm², with
+“modified replications with increased current density” mentioned without
+detail (p. 154). The point is not the current; it is the material. The
+ENEA foils, whose preparation Violante’s group spent a decade refining,
+were replaced by as-received wire. This is not a replication of
+Energetics, and its failure says nothing about the ENEA material or
+about the SRI replication that Callisto dismisses in the same
+section.</p>
+<h3 id="letts-pp.-156-160">7.9 Letts (pp. 156-160)</h3>
+<p>The two-laser experiment of Letts and Hagelstein is difficult. To
+measure excess power as a function of the beat frequency one must first
+have a cathode that produces excess power; the frequency scan then
+modulates it. Callisto built a windowed version of HTcal, followed
+Letts’ protocol with his help, and saw nothing; its own text notes that
+the window “suppressed” the excess heat reading by about 100 mW, 3 % of
+the input (p. 158). Callisto also re-analyses Letts’ own tabulated data
+and argues that they show no frequency dependence (Fig. 7.37,
+pp. 156-157), and cites a failed replication by Guffey et al. (p. 156).
+Those two points deserve an answer from Letts and Hagelstein rather than
+from us, and we invite it.</p>
+<p><strong>A fidelity table.</strong> The nine sections above can be
+summarised in one table. A replication is not a label; it is a list of
+the variables that were and were not reproduced.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Original</strong></th>
+<th><strong>Material and geometry</strong></th>
+<th><strong>Loading documented ≥ 0.9?</strong></th>
+<th><strong>Current and duration</strong></th>
+<th><strong>Calorimeter</strong></th>
+<th><strong>Nuclear product</strong></th>
+<th><strong>What the null bears on</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fleischmann-Pons</td>
+<td>10 g lumps vs 1-4 mm rods; 1 M vs 0.1 M LiOD</td>
+<td>No (not reported)</td>
+<td>Hours, not months</td>
+<td>Open beaker, RTD</td>
+<td>None</td>
+<td>Callisto’s own variants</td>
+</tr>
+<tr class="even">
+<td>McKubre</td>
+<td>0.5 mm wire vs 3 mm rod</td>
+<td>No (81-86 %, Fig. 7.6)</td>
+<td>Matched current; hundreds of hours</td>
+<td>HTcal vs flow</td>
+<td>None (M4 helium ignored)</td>
+<td>Little; loading short of 0.9</td>
+</tr>
+<tr class="odd">
+<td>Staker</td>
+<td>Close (“exact”)</td>
+<td>No (“above 80 %”, conceded)</td>
+<td>Weeks</td>
+<td>Open and closed</td>
+<td>None</td>
+<td>Callisto’s implementation</td>
+</tr>
+<tr class="even">
+<td>Hubler</td>
+<td>Similar</td>
+<td>Not stated</td>
+<td>Two runs of 200 h</td>
+<td>MS80 differential</td>
+<td>None</td>
+<td>Narrow</td>
+</tr>
+<tr class="odd">
+<td>Storms</td>
+<td>Pellets to Callisto’s recipe; later Storms’ own samples</td>
+<td>Not applicable</td>
+<td>Short</td>
+<td>MS80 (saturated); HTcal</td>
+<td>None</td>
+<td>Disputed; records unpublished</td>
+</tr>
+<tr class="even">
+<td>Miles</td>
+<td>Commercial Pd-B vs NRL Pd-B</td>
+<td>Not stated</td>
+<td>Six runs, durations not given</td>
+<td>Closed HTcal</td>
+<td>None (the Miles result)</td>
+<td>Thermal only</td>
+</tr>
+<tr class="odd">
+<td>Boss / Barham</td>
+<td>Co-deposition from patent; Seebeck to Navy dimensions</td>
+<td>75-80 %</td>
+<td>12 h runs at 15 W</td>
+<td>Open Seebeck, ±3 %</td>
+<td>None; CR-39 dismissed</td>
+<td>Heat only, not the Navy observables</td>
+</tr>
+<tr class="even">
+<td>Energetics</td>
+<td>As-received wire vs ENEA foils</td>
+<td>Not stated</td>
+<td>Low current; some higher</td>
+<td>MS80</td>
+<td>None</td>
+<td>Not the ENEA material</td>
+</tr>
+<tr class="odd">
+<td>Letts</td>
+<td>Windowed HTcal with Letts</td>
+<td>Not stated</td>
+<td>Standard</td>
+<td>HTcal, window −100 mW</td>
+<td>None</td>
+<td>Conditional on an active cathode</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-evidence-the-report-ignores">8. The evidence the report
+ignores</h2>
+<p>The electrochemical report is dated September 2026 and recommends the
+termination of a field. It does not cite the two results that, in the
+twelve months before its publication, moved the question into mainstream
+elite journals. Both were obtained with public money, for a small
+fraction of what Callisto spent, heavily peer-reviewed, and both are
+results of the first rank: the Nature Communications authors describe “a
+previously unrecognized regime of low-energy nuclear reactions in
+solids”. LENR is now in Nature Communications.</p>
+<h3 id="cleanhme-physical-review-x-october-2025">8.1 CleanHME: Physical
+Review X, October 2025</h3>
+<p>The CleanHME consortium, funded by the European Union’s Horizon 2020
+programme, published in Physical Review X the measurement of
+deuteron-deuteron reactions in a deuterated zirconium target at beam
+energies from 5 to 20 keV in ultra-high vacuum [8]. Two results. The
+authors argue that below about 5 keV the dominant reaction channel is
+not the proton or neutron branch but internal electron-positron pair
+creation: the nuclear energy leaves the reaction site through leptons,
+not through photons or neutrons. They also recall, citing earlier work,
+that in a metal, screening “can enhance the DD fusion cross sections by
+more than one order of magnitude, depending on the electronic and
+crystal lattice properties of the hosting target material”. This is a
+controlled accelerator experiment with silicon detectors of three
+thicknesses, germanium and sodium-iodide spectroscopy, Faraday-cup
+backgrounds and a full Geant4 simulation, refereed by Physical Review
+X.</p>
+<p>The same consortium has reported a second result [22]: the detection
+of thermal deuteron-deuteron fusion events within ion tracks in
+zirconium, palladium and titanium. Evidence for these reactions comes
+from a plateau in the reaction yield at the lowest beam energies, and
+from a specific component of the proton energy line that corresponds to
+emission from thermalised ion tracks rather than from binary beam-target
+fusion. The thermal proton emission depends strongly on the target
+material and on the temperature of the track; per target deuteron, it is
+about a thousand times higher in palladium than in zirconium. The method
+allows the cold-fusion reaction rate to be compared across metals as a
+function of their hydrogen diffusivity and electron screening energy;
+for zirconium, at a screening energy of about 340 eV, the extracted
+cross-section for ²H(d,p)³H is of the order of 10⁻¹⁵ barn, in agreement
+with the group’s earlier calculations. The yield plateau has since been
+observed independently by the ARPA-E-funded group described next,
+although the two groups disagree on the screening energies (0.4 keV
+against 1.7 keV in palladium).</p>
+<h3 id="arpa-e-nature-communications-2026">8.2 ARPA-E: Nature
+Communications, 2026</h3>
+<p>Independently, a collaboration between the University of California
+at Davis and Lawrence Berkeley National Laboratory, funded by the U.S.
+Department of Energy through ARPA-E, published in Nature Communications
+the measurement of deuteron-deuteron fusion in palladium and titanium
+foils at centre-of-mass energies from 6.5 keV down to 250 eV [9]. The
+foil is at once the cathode of an electrochemical cell and the target of
+the ion beam. Below about 2 keV the yield stops falling and reaches a
+plateau. The effective screening potential in palladium rises from 0.8
+keV with the beam alone to 1.7 keV when electrochemical loading is
+switched on, and the measured yield at the lowest energies exceeds the
+bare-nucleus extrapolation by more than 10¹⁸. Fusion is detected
+independently in the neutron and proton channels, with 350 hours of
+background. Let us be precise about what this is and is not. It is a
+beam-target measurement: the 10¹⁸ is the ratio of a measured rate to an
+extrapolation at a quarter of a kilo-electronvolt, not a rate in a
+loaded cathode at rest. The authors themselves caution that an effective
+screening potential lumps together several effects. It does not, by
+itself, imply heat at thermal energies.</p>
+<p>What it does establish is this. Electrochemical loading of palladium,
+in Callisto’s own material, measurably changes a nuclear reaction rate.
+That is exactly the coupling between electrochemistry and nuclear
+physics on which the field’s claims rest, in a report whose introduction
+says that in the history of the field “excess heat appears to have been
+a red herring” (p. 11). Callisto’s own introduction singles out, as the
+valuable legacy of the Google effort, its work on “the effects of
+electron screening on increasing conventional fusion yields from
+low-energy (few keV) deuteron bombardment” (p. 11). The Nature
+Communications paper is that line of work matured, and it points the
+other way from Callisto’s conclusion. For completeness: two of its
+authors, Schenkel and Munday, were also co-authors of the 2019 Google
+paper, and Schenkel is the program manager of the DARPA program
+discussed in section 10; the two pillars we lean on in sections 8 and 10
+share a person, and the reader should know it. Neither paper appears in
+a report released in September 2026, although the website’s own report
+dates (February 2024, June 2025) suggest the text was written before
+either appeared.</p>
+<h3 id="the-other-evidence">8.3 The other evidence</h3>
+<p><strong>Heat and helium.</strong> Miles [4], McKubre [5] and ENEA
+[6], discussed in section 3. Three laboratories, two of them government
+laboratories, with blind third-party analysis in Miles’ case.</p>
+<p><strong>Transmutation by deuterium permeation.</strong> Iwamura and
+colleagues at Mitsubishi Heavy Industries observed caesium converted to
+praseodymium and strontium to molybdenum on Pd/CaO multilayers, with
+in-situ XPS and later ICP-MS [10]. Toyota Central R&amp;D reproduced the
+caesium-to-praseodymium conversion at a level about two orders of
+magnitude below Iwamura’s [10]; Iwamura’s own later work at Tohoku
+continues it. Neither Callisto report mentions it; the pressure report’s
+transmutation search used gamma spectroscopy, which cannot see stable
+products.</p>
+<p><strong>Plasma stimulation.</strong> Glow-discharge and arc plasmas
+are a third route to the effect, distinct from electrolysis and from hot
+gas: Claytor at Los Alamos produced tritium in deuterium glow discharges
+on palladium through the 1990s, Karabut and Savvatimova reported excess
+heat and transmutation products in high-current glow discharge, and
+Mizuno’s arc and plasma reactors have been reported for twenty years.
+Neither Callisto report tests a plasma, or discusses one, except to
+classify its own runaway high-power electrolysis as a classical
+artifact. Set beside the nanostructured gas-phase materials below, the
+permeation transmutations above and the ion-beam hybrids of section 8.2,
+these are the venues where the field actually works today. Callisto
+touched none of them. Its program is, in design, the experiment of 1989:
+palladium, heavy water, a calorimeter. Six hundred pages on the field’s
+oldest protocol are not a survey of the state of the art of the field,
+and a null on the oldest protocol is not a basis for the sentence “we
+recommend terminating LENR research”.</p>
+<p><strong>Nickel-hydrogen gas systems.</strong> The NEDO-funded
+collaboration of Takahashi, Kitamura and six Japanese institutions on
+Cu-Ni-Zr nano-composites [11], Celani’s constantan wires and Mizuno’s
+reactors are the bulk of the field’s current gas-phase activity.
+Callisto excluded protium systems by design, apart from the three PNZ7
+runs noted in section 2.</p>
+<p>The Fleischmann-Pons replications that succeeded. At the CEA in
+Grenoble, Lonchampt and one of us reproduced the excess heat in the
+ICARUS cells provided by Fleischmann, including the boil-off regime [1].
+Callisto never operated such a cell, never used the electrolyte
+concentration, never used the thermistors, and never ran for the months
+required.</p>
+<p><strong>Nucleosynthesis by electron-beam collapse.</strong> Between
+2000 and 2003 the Proton-21 laboratory in Kyiv, under S. V. Adamenko,
+fired more than 4,000 kilojoule-scale coherent electron-beam pulses into
+pure metal targets (Cu, Ag, Ta, Pb) and analysed the ejecta with five
+independent methods (EPMA, Auger, SIMS, laser mass spectrometry and
+Rutherford backscattering), some 14,500 analyses on 770 samples [17].
+The laboratory’s stated purpose was the remediation of nuclear waste
+after Chernobyl, and its staff numbered in the thousands. The products
+contain elements absent from the certified starting material, at the
+level of 10¹⁸ atoms per shot, with isotopic ratios far from natural
+abundance, and no radioactivity above background. The group’s further
+claim of superheavy masses, while striking and documented in their book
+[17], is not established and we do not advance it. The transmutation
+data, measured by nuclear specialists with equipment and resources
+beyond Callisto’s, and whose motivation was not profit, are categorical
+in kind: an isotope ratio either departs from natural abundance or it
+does not. Neither Callisto report mentions the program. Yet they are the
+ones that stand out as irrefutable.</p>
+<p><strong>Where to find the rest.</strong> Each of the programs above,
+and about twenty others across electrolysis, gas loading, glow
+discharge, laser stimulation and pulsed power, is summarized with its
+materials, stimuli, controls and outputs in a recent structured review
+by G. Vassallo and one of us (M. F.) [12], together with the library of
+primary sources on which it rests. We mention it not as an authority but
+as a convenience: a reader who wants to check any claim in this section
+can go to the original papers from there.</p>
+<p><strong>Public funding.</strong> Callisto itself notes that in 2023
+ARPA-E “announced a $10 million funding initiative for eight projects
+focused on LENR” (p. 11). The Department of Energy’s 1989 panel
+recommended against a dedicated program, and its 2004 review, while
+finding the evidence not conclusive, recommended that agencies entertain
+well-designed individual proposals (pp. 9-10). Twenty years later the
+Department funded eight of them, and one of those projects is the Nature
+Communications paper.</p>
+<h3 id="on-reproducibility">8.4 On reproducibility</h3>
+<p>Callisto’s strongest general argument is that the effect cannot be
+produced on demand. That is true and the field has never denied it. It
+is also a separate question from whether the effect exists. At the
+smallest scales, picometre and nanometre, the effect is reliably
+reproducible but small; at the largest, that of ball lightning, a
+lightning strike is needed, and a phenomenon witnessed by countless
+observers since the Middle Ages remains entirely beyond laboratory
+control. Irreproducibility is a real weakness of the positive
+literature, and we do not hide behind the asymmetry of experimental
+science to excuse it. It is also exactly why a negative program should
+measure the product, helium, that does not depend on calorimetric
+reproducibility, and why Callisto’s own concession matters:
+“replications with the original party involved have been reported to be
+successful” (p. 189). The scientific response to an effect that appears
+in some laboratories and not in others is to put the laboratories
+together, which Callisto, with its resources, could have done with
+Staker, Storms, Letts, Miles, Violante or the Navy team. It chose
+instead to transplant their protocols into its own apparatus and to
+recommend closing the field when the transplants failed. Failure to
+reproduce a relatively rare success does not invalidate that
+success.</p>
+<p>Physics has a recent cautionary tale about nulls of this kind. Before
+1995 serious physicists argued that Bose-Einstein condensation of a
+dilute gas was impossible. The Paris group at École Normale Supérieure
+(ENS) tried with caesium in a magnetic trap and failed; we now know that
+in that trap, spin relaxation destroys the caesium gas before it can be
+cooled far enough. Rubidium condensed at JILA in 1995, with the right
+atom in the right trap; caesium itself condensed in 2003, in an optical
+trap and in the right spin state. The caesium null was real, obtained by
+excellent people, top of their field, with ample means, and it said
+nothing about whether condensates exist. It said that caesium in a
+magnetic trap does not condense. Callisto ran the caesium experiment in
+some ways: palladium at 81 to 86 % loading, in its own cells, with no
+helium assay, and concluded that condensation is impossible in general
+rather than concluding correctly that condensation was impossible in
+their self-inflicted parameter space. It is the 1989 replications all
+over again, with much better funding.</p>
+<p>What would putting the laboratories together look like? We should say
+first that many of us do not care whether the Fleischmann-Pons heat is
+replicated one more time, we have many of those, and would rather see
+new money go to the physics and the applications discussed in section
+11; we should also mention there is no unanimity on that among the
+reviewers, and some would still like the old question closed properly.
+For those who do care, and for any sceptic who wants it closed either
+way, the test should be staged and pre-registered, in four gates, so
+that every branch yields a result. First, specification: the parties
+agree in writing on one claimed active recipe, on the measurable state
+variables (loading, current density or deuterium flux, temperature and
+thermal history, surface and defect state, incubation time), on the
+instruments that establish each of them, and on the thresholds and
+stopping rules, before any heat is measured. Second, state attainment:
+the proponents demonstrate, under that protocol and without looking at
+heat, that the agreed state can be reached reproducibly; if it cannot,
+the test ends there and says so, which is itself a publishable result
+and the one Callisto never produced. Third, blinded calorimetry:
+heavy-water and light-water cells, independent instruments, unblinded
+only when the pre-specified dataset is complete. Fourth, and only then,
+the nuclear product: an independently operated helium assay of the
+sealed cells, with isotope blanks, leak standards and blinded sample
+identities. A disinterested convener, a national metrology institute for
+instance, chairs the first gate. Callisto’s engineers, its calorimeters
+and its sealed cells would be welcome at every one of them. It would
+cost a small fraction of what has already been spent, and it would end
+the argument either way.</p>
+<h2 id="who-wrote-this-who-paid-and-what-they-recommend">9. Who wrote
+this, who paid, and what they recommend</h2>
+<p>Chapter 9 of the electrochemical report lists what it finds wrong
+with the field: “no rigorous peer review and no team work”, papers with
+a single author, conclusions “not supported by data”, experiments
+“insufficiently described to allow to be replicated”, and details “made
+available only in personal communication” (pp. 187-188). Hold the report
+to its own list. It has no named author. Its acknowledgements are
+redacted. It was not peer reviewed; on the standards its own chapter 9
+sets out, it would not have survived a first editorial read. It was
+released two and a half years after the first report was written, with
+six pages removed and no explanation. It publishes no raw data, only
+PDFs and a website whose prose was, by its own admission, written with
+AI assistance (no fault in that; quite the opposite). Its replication
+sections omit the loading, the current density and in several cases the
+cathode dimensions. The release that makes these demands dates the
+Fleischmann-Pons announcement to “1995” (summary PDF, p. 1), attributes
+Staker’s COP of 2 to the Google Nature paper (p. 189, ref. [93]), cites
+a paper in the Journal of Condensed Matter Nuclear Science dated 1994
+(ref. [67]), thirteen years before that journal existed (we suspect a
+typo), and calls the European project “CEHMS” (sic, a typo) (p. 11). And
+Storms’ own public account of their dealings does not fit the
+report’s.</p>
+<p>We have said that we do not object to anonymity as such; some of us
+want it too, for various very human reasons. Here is what we object to.
+A recommendation to terminate a field of research, which in practice
+means the careers of several hundred people who have signed their names
+to their work for thirty-seven years, was written in October 2023 as
+advice to one private sponsor about his own money (pressure report,
+p. 378: “In October 2023, Callisto recommended that its LENR search be
+terminated. This was done, effective November 1, 2023”). The reports do
+not name that sponsor. The public record, as set out in section 2, makes
+the identity easy to infer, and we have no doubt that the program was
+started in good faith. The closing memorandum has now been placed on a
+public website, stripped of names, and is being read as if it were the
+verdict of the scientific community. It is not. It is what one
+investor’s team told him when he decided to stop paying.</p>
+<p>There is nothing wrong with a private investor closing a private
+program. There is something wrong with converting that decision into a
+public instruction to everyone else, without a name on it, without the
+data, without having measured helium, and without having run anything of
+any relevance, not even the founding experiment it claims to
+replicate.</p>
+<p>One more point about the rhetoric. The words “subterfuge”,
+“deception” and “cherry-picking” appear on page 14, before a single
+measurement is presented, and the last of them is later applied by name
+to Letts (p. 17), a working scientist who helped Callisto with its
+replication. The authors who wrote those words did not sign them. We
+leave it to the reader to decide which side of this exchange has behaved
+as scientists are expected to behave.</p>
+<p><strong>Building Bridges.</strong> Finally, a word about the people.
+Because in the age of AI, human connections are what we have left and
+perhaps the most important thing in this brave new world. We do not wish
+to alienate any of the contributors, nor the sponsor, whoever he is, who
+has been a visionary and influential philanthropist for science for
+years now. Quite the contrary. We have spoken privately with some of the
+younger (and not so young) figures named in the report. They are
+well-meaning engineers, investors and scientists, well trained, well
+connected, with their hearts and their scientific instincts in the right
+place, and it is heartening to see so many young people entering a field
+that is ageing fast; Fleischmann and Pons was forty years ago. We do not
+imply ill intent or conflict of interest or any nefarious motives, not
+even of the sponsor, even though competing interests exist in every
+portfolio, by definition of a diversified portfolio. An investor at that
+level is expected to back every horse in the race, and that by itself
+implies neither bad faith nor a conflict of interest; those who would
+infer one do not understand investing. It is equally clear to us that
+they worked under strict non-disclosure agreements, that the secrecy and
+insularity frustrated them, and that several of them, including those
+the website credits with pushing for publication, wanted the report
+released years ago, a wish that was only recently granted. They speak of
+“open science” and “effective altruism” as an aspiration. Their daily
+routine was the polar opposite, because of the way the program was run.
+Not out of malice, but out of habit.</p>
+<h2
+id="on-timing-released-the-week-the-history-was-told-and-darpa-started-paying">10.
+On timing: released the week the history was told and DARPA started
+paying</h2>
+<p>One contributor to the report told us privately: “we are still trying
+to understand why the report was cleared for release just now. We had
+been pushing for years.” So are we. The pressure report was finished in
+February 2024 and the decision to terminate was taken in October 2023,
+yet nothing appeared until 8 September 2026, and Callisto gives no
+reason for the thirty-month delay. Two things happened in the
+interval.</p>
+<p>At ICCF-27 in Niagara Falls, in the first week of September 2026, one
+of us went on the record about his own part in the history of this
+field. Paul Werbos, best known as the originator of backpropagation in
+artificial intelligence and for three decades a program director at the
+National Science Foundation, sat on the editorial committee of the
+EPRI-NSF Workshop on Anomalous Effects in Deuterided Metals held in
+Washington in October 1989, whose proceedings were withheld until 1993.
+His testimony, given at ICCF-27 and repeated on video [16], is that in
+1989 Edward Teller came to see him and his division director at NSF,
+explained why the effect was real and not as safe as it had sounded, and
+asked him to help keep it from open public release, without ever using
+the word “classified”; that Julian Schwinger asked him, more discreetly,
+to hold back discussion; that both men knew he was exploring NSF funding
+for the work and persuaded him not to pursue it; and that he agreed,
+unless and until circumstances changed. In his judgment they now have.
+This is one witness’s account, offered under his own name and open to
+challenge, and we present it as such. It is also the first time a senior
+official of the agency has said in public that the handling of this
+subject in 1989 was a deliberate decision taken at a high level by high
+profile people on national-security grounds, rather than the verdict of
+a peer-review panel. Staker, who recalls his own conversations with
+Teller and Schwinger as supportive but brief and vague, offers a
+counterweight: had Teller regarded the subject as classified, he would
+not have discussed it with anyone lacking a clearance [23]. The two
+recollections are not in conflict, since Werbos is explicit that the
+word was never used, but the reader should have both. Lowell Wood was
+Teller’s closest collaborator at Livermore, which may bear on his
+original enthusiasm; we do not assume malice, even from Lowell Wood. We
+know he is a LENR believer, just as Teller was.</p>
+<p>And on 1 September 2026 DARPA started MARRS (Mechanisms for
+Amplification of fusion Reaction Rates in Solids), a three-year program
+whose solicitation, posted on 30 December 2025, cites independent
+evidence since 2023 of fusion rates in solids some 10¹⁸ above prediction
+[14]. Its program manager, Thomas Schenkel, is a co-author of the Nature
+Communications paper of section 8. The solicitation states that
+“calorimetry alone is not sufficient” and requires direct detection of
+fusion products. Callisto’s electrochemical program contains no
+nuclear-product measurement at all, and neither report contains a helium
+measurement. By the standard the Department of Defense has now adopted
+for this field, Callisto’s electrochemical program would not have been
+fundable; by the standard of Callisto’s own introduction (“Nuclear
+products are unambiguous”, p. 11) it falls short of its own advice.</p>
+<p>Shortly after MARRS began and after Werbos spoke, a report that had
+sat unpublished for two and a half years appeared on a website,
+unsigned, its sponsor unnamed, recommending that the research DARPA had
+just funded be terminated. We do not know why. Its effect, whatever its
+intent, is to put a definitive-sounding, while non-peer-reviewed,
+verdict in front of the people who will decide whether public and
+private money now follows.</p>
+<h2 id="why-the-field-should-be-funded-and-not-only-for-heat">11. Why
+the field should be funded, and not only for heat</h2>
+<p>We will take the opportunity to say why we think substantial funding
+should now enter this field, and to concede a point first. Several of
+us, though not all, agree with a view that Callisto’s contributors
+expressed to us in private: energy may not be the main application of
+LENR, and other routes to clean energy, solar among them and perhaps hot
+fusion, look to have earlier payouts. On that narrow but important point
+the Callisto leaders and their sponsor may well be right. It is not a
+reason to stop. It is a reason to look at what else is there.</p>
+<p>A second concession, and a distinction. A senior member of the
+Callisto program, in conversation with us, put the point more directly
+than the reports do: whatever the heat is, it is too small to matter.
+The reports are entitled to that observation. The heat, where it has
+been seen, has been small: milliwatts to a few watts, intermittent, and
+hard to scale, and nine years of a well-funded search did not change
+that. Several companies are nonetheless trying to scale it, and we wish
+them well; but a small effect is not an absent one. The most likely
+reason for the size is the one Storms has argued for twenty years: the
+reaction does not take place in the bulk of the metal but in a sparse
+population of surface sites, cracks and defects, so that the active
+volume of any cathode is a minute fraction of the palladium in it [19].
+The heat scales with the number of such sites, not with the mass of
+metal, which is exactly why bulk loading alone never produced a reactor
+and why the question has resisted brute force. That is an argument about
+engineering, and potentially the science, not about existence. The
+helium is there in proportion to the heat, the transmutations are there,
+the tracks and the hot spots are there, and the screening measurements
+of 2025 and 2026 are there, whatever the wattage. A phenomenon can be
+real, nuclear, and small, and the right response to that combination is
+to understand the sites, not to close the subject.</p>
+<p>Heat is just the tip of the iceberg. Beneath it is a question of
+physics that has been hiding in plain sight for forty years: how does a
+metal lattice change what two nuclei do? By what physical mechanism? The
+two peer-reviewed papers of 2025 and 2026 put a number on that question
+for the first time in mainstream journals, and the number is large.
+Fitted screening potentials of a kilovolt or more, a reaction channel
+that, the Physical Review X authors argue, hands the energy to electrons
+rather than to photons or neutrons, yields that depend on the host metal
+by a factor of a thousand: none of this is in the free-electron picture
+of a metal, none of it, and each has been reported from measurement,
+though the two groups disagree on the size of the screening (0.4 keV
+against 1.7 keV in palladium) and the electron channel below 5 keV is an
+extrapolation. What causes it is open. A mystery. For example, it is one
+possibility that electrons at surfaces, cracks and interfaces organize
+into dense, coherent structures, the “charge clusters” that Kenneth
+Shoulders described in the 1980s and that Feynman took seriously enough
+to answer in a 1986 letter to Shoulders [18]; several of us work on that
+idea [12], and Storms has argued for twenty years that whatever the
+mechanism, it lives in such sites, surface cracks, and not in the bulk
+[19]. There are many other candidates: phonon-assisted or coherent
+collective processes in the lattice, heavy or screened electrons, defect
+and stress fields, non-equilibrium flux through the surface, plasmon
+excitations, and several more. The point is that the mechanism, whatever
+it is, is now a legitimate and funded experimental question, and that is
+where the value lies. It promises a revolution in theoretical physics,
+in experimental physics, and in industry.</p>
+<p>Because physics at that scale is not a curiosity. Whatever is
+concentrating charge or energy at the picometre to nanometre scale in a
+loaded lattice bears on catalysis, on superconductivity, on the
+interconnects and packaging that limit today’s chips and data centres,
+on battery electrodes, on the remediation of nuclear waste by
+transmutation, and, eventually, on energy. Each of these is a large
+industry, and most of them would be transformed by a tenth of what is
+claimed for heat. The scientific prize, in our not so humble opinion, is
+larger than any of them, for it is not monetary, it is potentially a
+brand new and uncharted path for nuclear and particle physics. Einstein
+is reported to have said, near the end of his life, “You know, it would
+be enough to really understand the electron.” Forty years of
+metal-hydride anomalies, Compton-level effects, two mainstream papers in
+the last twelve months and a new DARPA program are telling us where to
+look. A private report that never sampled the helium in its own sealed
+cells is not a reason to look away; and a program that spent nine years
+asking only “is there heat?” was asking the smallest question available
+and reached the narrowest of negative conclusions while pretending to
+broadly generalize its failure.</p>
+<h2 id="conclusion">12. Conclusion</h2>
+<p>What Callisto established is this: under its own conditions, closed
+cells at 30 °C with 0.5 mm wires, loadings in the replications below 0.9
+and documented above 0.9 only in cells of Callisto’s own novel design,
+and calorimeters good to a few percent, no excess heat above a few
+percent was seen; and by gas loading to 100 % at pressures up to 600,000
+psi, no heat either. We accept those results. They are consistent with
+everything the field has said since 1990 about what is required, and it
+would have been predicted by any of the experimenters Callisto set out
+to refute. We would have told the sponsor the same thing, in his own
+register: “do not fund Callisto’s research.”</p>
+<p>What Callisto did not establish is anything about the experiments it
+claims to refute in particular, and certainly nothing about modern LENR
+in general. The Fleischmann-Pons experiment was not run: wrong
+electrolyte, wrong calorimeter, wrong sensors, no reported loading, and
+hours instead of months. McKubre’s loading was not reached: Callisto’s
+own figure puts it at 81 to 86 %. Staker’s loading was, by Callisto’s
+admission, not reached. Storms’ material was made to a recipe Callisto
+chose, and nothing Callisto has published settles what passed between
+Storms and Callisto. Energetics’ foils were replaced by as-received
+wire. Miles’ helium was never measured. The Navy’s observables, the
+tracks, the infrared flashes and the transducer, were set aside for a
+paragraph on etching. The gas-phase work of the last fifteen years
+received three runs.</p>
+<p>A credible test would have looked different. It would have run the
+Fleischmann-Pons boil-off protocol in a Dewar cell with thermistors for
+three months. It would have used ENEA-prepared cathodes and measured the
+loading throughout. It would have put a helium mass spectrometer on the
+gas line, as Miles, McKubre and Violante did. It would have invited
+Staker, Storms and the Navy team into the laboratory. It would have
+named its sponsor and signed its name. Instead, a large, competent and
+largely irrelevant experiment was told by its own people that it settles
+the question.</p>
+<p>One more thing, and it is short. The reports publish no data. Not a
+run record, not a calibration file, not a loading trace, not a
+spreadsheet: six hundred pages of PDF and a website. No referee at any
+journal would accept a single claimed null on those terms, let alone a
+recommendation to close a field of research. You cannot be serious. This
+is not how science is reported; it is how a private memorandum is filed.
+Release the data, and the review can be completed.</p>
+<p>In 2026 the case for anomalous nuclear reactions in metal hydrides
+does not rest on the narrow silence of an anonymous report. It rests on
+thirty-five years of heat-helium correlations, on transmutation results
+replicated in Japanese laboratories and reported from Ukrainian,
+European and American ones, and now on two peer-reviewed measurements of
+the first rank, in Physical Review X and Nature Communications, showing
+that the metal lattice changes deuteron-deuteron reaction rates by many
+orders of magnitude at the lowest beam energies yet measured, and that
+electrochemical loading of palladium changes them further, with, in one
+of them, evidence that the energy is carried away by electrons. Callisto
+looked for heat with calorimeters good to a few percent, and for gamma
+rays that the field has always said are absent, in sealed cells whose
+helium it never sampled. It found neither. Or, to borrow the register of
+the original one last time: we therefore recommend doubling down on
+funding LENR research.</p>
+<h2 id="a-plaidoyer">13. A Plaidoyer</h2>
+<p>And so, to the sponsor, whoever he is, and to the small number of men
+and women who, like him, can write a cheque that changes what our
+species knows: this is your moment. You have spent nine years and a sum
+you prefer not to disclose to learn what the field could have told you
+over lunch, which is that the effect hides in surfaces, in loaded
+lattices, in the patience of months, and in helium; that electrons
+sometimes behave in strange and mysterious ways. That money was not
+wasted. It may be the most expensive tutorial in the history of the
+subject, and it has made you the best-educated sceptic alive. More
+importantly, the talent you have attracted and trained is real, now
+scattered in a diaspora across Silicon Valley and the national
+laboratories, still wondering with us why the reports were not released
+earlier. Physical Review X and Nature Communications have settled the
+question. DARPA, the European Union and many private investors are now
+moving the money. What remains is to do it properly, in the open, with
+names on it, fully funded, without nonsense, and not on the question you
+have already spent nine years on and which was largely settled in
+1990.</p>
+<p>Let us also be plain, once again, about something that several of us
+feel strongly. Some of us do not care whether the Fleischmann-Pons heat
+is replicated one more time, and would not spend a dollar of new money
+on it. Not because we doubt it but because we know it. Everyone here
+knows what they saw. The heat question has consumed four decades and,
+now, a private fortune, on a protocol that was always a poor instrument
+for studying the physics underneath it, and we resent, there is no
+gentler word, watching that much money and talent poured one more time
+into 0.5 mm wires in heavy water to answer a question the field asked
+and answered in 1990. The modern approaches to heat, assuming heat is
+what one wants, are nanostructured and gas-phase materials run hot,
+ion-beam and electrochemical hybrids of the kind Nature Communications
+just published, and nuclear-product detection first and calorimetry
+second, as DARPA now requires.</p>
+<p><strong>The bulk of the iceberg.</strong> The more interesting
+approaches are not about heat at all: they are about the electron
+physics of section 11 and its applications in catalysis,
+superconductivity and materials. Had the sponsor asked, that is where
+most of us would have pointed him in 2015, and it is where we would
+point him now. Those who still want the heat question settled will find
+a way to do it at the end of section 8.4; it is not where we would
+start.</p>
+<p>The reveal, the prize, if the field is right, is not one industry but
+the physics of the electron itself. And with it catalysis,
+superconductivity, the packaging of every chip and every interconnect,
+unheard-of batteries, the cleaning by transmutation of every nuclear
+waste pool and, in time, energy for everyone. The world has never lacked
+people who can say no to cold fusion. For forty years it has been short
+of people who could afford to say yes. You can, and you already did. We
+would be honoured to help you spend it better this time, alongside the
+people whose lives you have already brought to this field.</p>
+<p>Onwards.</p>
+<blockquote>
+<p><em>“Those who say it cannot be done should not interrupt those who
+are doing it.” (Chinese proverb, often attributed to G. B.
+Shaw)</em></p>
+</blockquote>
+<blockquote>
+<p><em>“Solvitur ambulando.” (Diogenes, on being told motion was
+impossible)</em></p>
+</blockquote>
+<blockquote>
+<p><em>“You know, it would be enough to really understand the electron.”
+(attributed to Albert Einstein)</em></p>
+</blockquote>
+<blockquote>
+<p><em>“They have eyes and they don’t see, they have ears and they don’t
+hear.” (Matthew 13:13-15)</em></p>
+</blockquote>
+<blockquote>
+<p><em>“The first is the question: what fraction of the total knowledge
+base is in the Public Domain? Indeed, is it acceptable that any
+knowledge should be removed from the Public Domain?” (Martin
+Fleischmann, 2000)</em></p>
+</blockquote>
+<h2 id="reviewers-and-competing-interests">Reviewers and competing
+interests</h2>
+<p>This review was drafted by J.-P. Biberian and M. Fleury with
+contributions from the reviewers named on the title page, with
+substantial assistance from frontier AI models in drafting, checking and
+editing. Each reviewer has read and approved this version; reviewers who
+preferred not to be named are shown as redacted, as in the reports we
+review, and no name appears here without its owner’s consent. Two of the
+reviewers are co-founders of XResearch, which maintains the LENR library
+referred to in section 8.3; M. Fleury conducted the Werbos interview
+cited in section 10, with J.-P. Biberian and F. Celani, and P. Werbos is
+its subject. None of the reviewers has a financial interest in Project
+Callisto or in its sponsor’s ventures.</p>
+<h2 id="references">References</h2>
+<ol type="1">
+<li>G. Lonchampt, L. Bonnetain and P. Hicter, “Reproduction of
+Fleischmann and Pons experiments”, Proceedings of ICCF-6, Hokkaido,
+1996; G. Lonchampt, J.-P. Biberian, L. Bonnetain and J. Delépine,
+“Excess heat measurement with Pons and Fleischmann type cells”,
+Proceedings of ICCF-7, Vancouver, 1998.</li>
+<li>M. Fleischmann, S. Pons, M. W. Anderson, L. J. Li and M. Hawkins,
+“Calorimetry of the palladium-deuterium-heavy water system”, J.
+Electroanal. Chem. 287, 293-348 (1990). Cited by Callisto as reference
+[234].</li>
+<li>M. Fleischmann and S. Pons, “Calorimetry of the Pd-D2O system: from
+simplicity via complications to simplicity”, Phys. Lett. A 176, 118-129
+(1993). Cited by Callisto as reference [235].</li>
+<li>M. H. Miles, R. A. Hollins, B. F. Bush, J. J. Lagowski and R. E.
+Miles, “Correlation of excess power and helium production during D2O and
+H2O electrolysis using palladium cathodes”, J. Electroanal. Chem. 346,
+99-117 (1993); M. H. Miles, B. F. Bush and J. J. Lagowski, Fusion
+Technol. 25, 478 (1994); M. H. Miles, “Correlation of excess enthalpy
+and helium-4 production: a review”, Proceedings of ICCF-10, Cambridge,
+2003.</li>
+<li>M. C. H. McKubre et al., “Energy production processes in deuterated
+metals”, EPRI TR-107843 (1998), experiment M4; M. McKubre, F. Tanzella,
+P. Tripodi and P. Hagelstein, “The emergence of a coherent explanation
+for anomalies observed in D/Pd and H/Pd systems: evidence for 4He and
+3He production”, Proceedings of ICCF-8, Lerici, 2000.</li>
+<li>M. Apicella, E. Castagna, L. Capobianco, L. D’Aulerio, G.
+Mazzitelli, F. Sarto, A. Rosada, E. Santoro, V. Violante, M. McKubre, F.
+Tanzella and C. Sibilia, “Some recent results at ENEA”, Proceedings of
+ICCF-12, Yokohama, 2005.</li>
+<li>P. K. Iyengar, M. Srinivasan et al. (BARC), Fusion Technol. 18, 32
+(1990); F. G. Will, K. Cedzynska and D. C. Linton (National Cold Fusion
+Institute), J. Electroanal. Chem. 360, 161 (1993); T. N. Claytor, D. G.
+Tuggle and S. F. Taylor (LANL), Proceedings of ICCF-3, Nagoya,
+1992.</li>
+<li>R. Dubey, K. Czerski, Gokul Das H., A. Kowalska, N. Targosz-Ślęczka,
+M. Kaczmarski and M. Valat, “Experimental signatures of a new channel of
+the deuteron-deuteron reaction at very low energy”, Phys. Rev. X 15,
+041004 (2025).</li>
+<li>M. E. Karahadian, M. Colborne, A. Persaud, T. Schenkel and J. N.
+Munday, “Enhanced nuclear fusion in the sub-keV energy regime”, Nature
+Communications 17, 8845 (2026), doi:10.1038/s41467-026-74421-1.</li>
+<li>Y. Iwamura, M. Sakano and T. Itoh, “Elemental analysis of Pd
+complexes: effects of D2 gas permeation”, Jpn. J. Appl. Phys. 41, 4642
+(2002); T. Hioki et al., Jpn. J. Appl. Phys. 52, 107301 (2013), the
+Toyota Central R&amp;D replication.</li>
+<li>A. Kitamura, A. Takahashi, K. Takahashi, R. Seto, T. Hatano, Y.
+Iwamura, T. Itoh, J. Kasagi, M. Nakamura, M. Uchimura, H. Takahashi, S.
+Sumitomo, T. Hioki, T. Motohiro, Y. Furuyama, M. Kishida and H. Matsune,
+“Excess heat evolution from nanocomposite samples under exposure to
+hydrogen isotope gases”, Int. J. Hydrogen Energy 43, 16187 (2018).</li>
+<li>G. Vassallo and M. J. J. Fleury, “Empirical signatures of coherent
+electron clusters in condensed matter nuclear science”, manuscript,
+August 2026, a structured review of the experimental record including
+the CleanHME and ARPA-E results; available from the authors and through
+the XResearch LENR library (xresearch.it).</li>
+<li>E. Storms, post #7 in the thread “Project Callisto could not
+replicate LENR”, LENR-Forum, 11 September 2026, 20:52 UTC,
+https://www.lenr-forum.com/forum/thread/7414-project-callisto-could-not-replicate-lenr/</li>
+<li>DARPA, “Mechanisms for Amplification of fusion Reaction Rates in
+Solids (MARRS)”, Defense Sciences Office, program page
+https://www.darpa.mil/research/programs/marrs-mechanisms-amplification-fusion-reaction-rates-solids
+and Broad Agency Announcement HR001126S0007, posted 30 December
+2025.</li>
+<li>Project Callisto, “Callisto Electrochemical Loading Research Final
+Report” (4 September 2026) and “Callisto: High Pressure Loading Final
+Report” (11 February 2024), https://callisto.report. On Lowell Wood and
+Bill Gates: A. Vance, “How an F Student Became America’s Most Prolific
+Inventor”, Bloomberg Businessweek, 20 October 2015; S. Weinberger,
+“Warming Up to Cold Fusion”, Washington Post Magazine, 21 November 2004;
+New Energy Times, 14 November 2014, on the Gates visit to ENEA Frascati,
+and the ENEA photographs of the visit.</li>
+<li>M. Fleury, “LENR suppression disclosure video interview with Paul
+Werbos”, Martin Fleischmann Memorial Project (YouTube), September 2026,
+https://www.youtube.com/live/RWD1ZKqihyo</li>
+<li>S. V. Adamenko, F. Selleri and A. van der Merwe (eds.), Controlled
+Nucleosynthesis: Breakthroughs in Experiment and Theory, Springer,
+Dordrecht, 2007; S. V. Adamenko and V. I. Vysotskii, “Evolution of
+annular self-controlled electron-nucleus collapse in condensed targets”,
+Found. Phys. 34, 1801 (2004).</li>
+<li>R. P. Feynman, letter to K. R. Shoulders, Charles C. Lauritsen
+Laboratory of High Energy Physics, California Institute of Technology,
+31 January 1986; reproduced in K. R. Shoulders, EV: A Tale of Discovery,
+Jupiter Technologies, Austin, 1987.</li>
+<li>E. Storms, “A Comprehensive Understanding of Cold Fusion”, LENR.org,
+10 April 2026; E. Storms, The Explanation of Low Energy Nuclear
+Reaction, Infinite Energy Press, 2014.</li>
+<li>E. Storms, personal communication to the authors, 27 September 2026,
+concerning the Seashore program at Texas Tech University, Lubbock.</li>
+<li>S. Szpak, P. A. Mosier-Boss and J. J. Smith, “On the behavior of the
+cathodically polarized Pd/D system: search for emanating radiation”,
+Phys. Lett. A 210, 382 (1996); S. Szpak, P. A. Mosier-Boss, M. H. Miles
+and M. Fleischmann, “Thermal behavior of polarized Pd/D electrodes
+prepared by co-deposition”, Thermochim. Acta 410, 101 (2004); P. A.
+Mosier-Boss, S. Szpak, F. E. Gordon and L. P. G. Forsley, “Use of CR-39
+in Pd/D co-deposition experiments”, Eur. Phys. J. Appl. Phys. 40, 293
+(2007); P. A. Mosier-Boss, S. Szpak, F. E. Gordon and L. P. G. Forsley,
+“Triple tracks in CR-39 as the result of Pd-D co-deposition: evidence of
+energetic neutrons”, Naturwissenschaften 96, 135 (2009); P. A.
+Mosier-Boss, L. P. Forsley, F. E. Gordon et al., “Review of twenty years
+of LENR research using Pd/D co-deposition”, J. Condensed Matter Nucl.
+Sci. 4, 173 (2011); J. Marwan and S. B. Krivit (eds.), Low-Energy
+Nuclear Reactions Sourcebook, ACS Symposium Series 998 (2008) and
+vol. 2, ACS Symposium Series 1029 (2009).</li>
+<li>K. Czerski, R. Dubey, A. Kowalska, G. Das Haridas, S. Thulichery, M.
+Kaczmarski, N. Targosz-Ślęczka and M. Valat, “Observation of thermal
+deuteron-deuteron fusion in ion tracks”, arXiv:2409.02112v3 (28
+September 2026).</li>
+<li>M. R. Staker, written answers to questions from the reviewers, 6
+October 2026, including comments on the Staker section of the
+electrochemical report; M. R. Staker, J. Condensed Matter Nucl. Sci. 29,
+129-168 (2019), on the Pd-D phase diagram.</li>
+</ol>
+</article></main>
+<footer class="end">
+  <div class="in">
+    <div class="row"><span>Reports dated 11 February 2024 and 8 June 2025</span><a href="#top">Return to top ↑</a></div>
+    <div class="mid">Review released October 2026</div>
+    <p class="note">AI assisted with the design and wording of this landing page, and with the review. The reviewers did the physics.</p>
+    <div class="dedic">
+      <span>Callisto Review</span>
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22" fill="none" stroke="var(--accent)" stroke-width="2.5"/><path d="M14 32c6-10 30-10 36 0" fill="none" stroke="var(--ink-faint)" stroke-width="2"/><path d="M14 32c6 10 30 10 36 0" fill="none" stroke="var(--ink-faint)" stroke-width="2"/><circle cx="32" cy="32" r="3.5" fill="var(--accent)"/></svg>
+      <span>Solvitur ambulando</span>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme');
+  function cur(){ var t=root.getAttribute('data-theme'); if(t) return t; return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
+  function paint(){ btn.textContent = cur()==='dark' ? '☼ Light' : '☼ Dark'; }
+  btn.addEventListener('click',function(){ var n=cur()==='dark'?'light':'dark'; root.setAttribute('data-theme',n); try{localStorage.setItem('cr-theme',n)}catch(e){} paint(); });
+  try{ var s=localStorage.getItem('cr-theme'); if(s) root.setAttribute('data-theme',s);}catch(e){}
+  paint();
+})();
+</script>
+</body>
+</html>

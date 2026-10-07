@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A peer review of the Project Callisto reports on cold fusion, by researchers in condensed matter nuclear science.">
+<meta name="theme-color" content="#f4f5f1">
+<title>Callisto Review</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: a deliberate mirror of callisto.report. Same paper, same ink, same accent, same 48rem prose column,
+   same uppercase date eyebrow, same dotted name list with black bars. The joke is in the content. */
+:root{
+  color-scheme:light;
+  --paper:#f4f5f1; --paper-raised:#fbfcf9; --paper-inset:#e8ece8;
+  --ink:#121817; --ink-soft:#4d5653; --ink-faint:#626e68;
+  --rule:#b6bcb8; --rule-strong:#6d7672;
+  --accent:#1d5d73; --accent-deep:#123e4e;
+  --header-bg:#f4f5f1;
+  --font:"IBM Plex Sans","Nebula Sans",Arial,Helvetica,sans-serif;
+  --prose:48rem; --content:78rem; --pad:clamp(1.25rem,4vw,4rem);
+  --space:clamp(2.5rem,4vw,4rem);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#111614; --paper-raised:#181e1b; --paper-inset:#202824;
+    --ink:#edf1ec; --ink-soft:#b8c0bb; --ink-faint:#8d9892;
+    --rule:#3f4944; --rule-strong:#727d77;
+    --accent:#76b5ca; --accent-deep:#9bcedd;
+    --header-bg:#111614;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#111614; --paper-raised:#181e1b; --paper-inset:#202824;
+  --ink:#edf1ec; --ink-soft:#b8c0bb; --ink-faint:#8d9892;
+  --rule:#3f4944; --rule-strong:#727d77;
+  --accent:#76b5ca; --accent-deep:#9bcedd;
+  --header-bg:#111614;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:1.125rem;line-height:1.58;-webkit-font-smoothing:antialiased}
+a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{color:var(--accent-deep)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:1rem;top:1rem;background:var(--paper-raised);padding:.5rem}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--header-bg);border-bottom:1px solid var(--rule)}
+.top .bar{max-width:var(--content);margin:0 auto;padding:0 var(--pad);height:3.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{font-weight:600;font-size:.95rem;text-decoration:none;color:var(--ink)}
+nav.menu{display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap}
+nav.menu a,nav.menu button{font-family:var(--font);font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--ink);background:none;border:0;padding:0;cursor:pointer}
+nav.menu a:hover,nav.menu button:hover{color:var(--accent)}
+@media (max-width:640px){nav.menu a.hide-sm{display:none}}
+
+main{max-width:var(--content);margin:0 auto;padding:0 var(--pad)}
+.section{padding-block:var(--space);border-top:1px solid var(--rule)}
+.section:first-child{border-top:0}
+.prose{max-width:var(--prose)}
+.eyebrow{font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 1.25rem}
+.eyebrow span+span::before{content:"·";margin:0 .6em}
+h1{font-size:clamp(2.6rem,7vw,4.5rem);font-weight:600;line-height:1.02;letter-spacing:-.02em;margin:0 0 1rem;text-wrap:balance}
+h2{font-size:clamp(1.6rem,3vw,1.92rem);font-weight:600;line-height:1.05;letter-spacing:-.01em;margin:0 0 1rem;text-wrap:balance}
+h3{font-size:1.2rem;font-weight:600;margin:1.75rem 0 .35rem}
+p{margin:0 0 1.1rem;color:var(--ink-soft)}
+p.lede{font-size:1.2rem;color:var(--ink);font-style:italic;margin-bottom:1.5rem}
+p.lede em{font-style:normal}
+p strong{color:var(--ink);font-weight:600}
+.cta{display:inline-block;margin-top:.25rem}
+.dl{color:var(--ink);font-weight:500;margin-top:.5rem}
+.dl .dot{color:var(--ink-faint);margin:0 .6em}
+blockquote{margin:1.5rem 0;padding-left:1.25rem;border-left:3px solid var(--rule-strong);color:var(--ink);font-style:italic}
+blockquote cite{display:block;font-style:normal;font-size:.9375rem;color:var(--ink-faint);margin-top:.4rem}
+
+/* Findings record: the mirror of their "Experimental record" */
+.record{display:grid;gap:clamp(1.5rem,3vw,2.5rem);margin-top:1.5rem}
+.finding{border-top:1px solid var(--rule);padding-top:1.25rem;display:grid;grid-template-columns:5.5rem 1fr;gap:1rem;align-items:start}
+.finding .k{font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint);padding-top:.3rem;font-variant-numeric:tabular-nums}
+.finding h3{margin:0 0 .4rem}
+.finding p{margin-bottom:.5rem}
+.finding .ref{font-size:.9375rem;color:var(--ink-faint)}
+@media (max-width:560px){.finding{grid-template-columns:1fr;gap:.25rem}}
+
+/* Numbers strip, their "scope" vernacular turned on them */
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.75rem 0}
+.fig{background:var(--paper-raised);padding:1.1rem 1.2rem;min-width:0}
+.fig b{display:block;font-size:1.9rem;font-weight:600;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums;color:var(--ink)}
+.fig span{font-size:.9375rem;color:var(--ink-faint)}
+
+/* Reports block */
+.reports{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1.5rem;margin-top:1.5rem}
+.report{background:var(--paper-raised);border:1px solid var(--rule);padding:1.5rem;min-width:0}
+.report h3{margin:0 0 .5rem}
+.report p{font-size:1rem}
+.links{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;margin-top:.75rem}
+.links a{font-size:.9375rem}
+.muted{color:var(--ink-faint);font-size:.9375rem}
+
+/* Reviewers: same dotted list, same black bars */
+.names{max-width:var(--prose);line-height:2;color:var(--ink);font-size:1.0625rem}
+.names .dot{color:var(--ink-faint);margin:0 .45em}
+.redact{display:inline-block;background:var(--ink);height:.95em;vertical-align:-.12em;border-radius:1px}
+.names small{display:block;font-size:.8125rem;color:var(--ink-faint);margin-top:1rem;line-height:1.5}
+.thanks{text-align:center;max-width:40rem;margin:2.5rem auto 0;color:var(--ink-soft)}
+
+footer.end{border-top:1px solid var(--rule);margin-top:var(--space)}
+.end .in{max-width:var(--content);margin:0 auto;padding:1.75rem var(--pad) 3rem;font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint)}
+.end .row{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.end .mid{text-align:center;margin:1.25rem 0}
+.end .note{text-transform:none;letter-spacing:0;font-size:.9375rem;text-align:center;color:var(--ink-faint)}
+.end .dedic{text-align:center;margin-top:2.5rem}
+.end .mark{display:block;margin:.6rem auto .8rem;width:64px;height:64px}
+</style>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="top">
+  <div class="bar">
+    <a class="brand" href="#top">Callisto Review</a>
+    <nav class="menu" aria-label="Sections">
+      <a href="CALLISTO_PEER_REVIEW.pdf" download>PDF</a>
+      <a href="#background">Background</a>
+      <a href="#findings">Findings</a>
+      <a class="hide-sm" href="#method">Method</a>
+      <a href="#review">Review</a>
+      <a class="hide-sm" href="#reviewers">Reviewers</a>
+      <button id="theme" type="button" aria-label="Toggle dark mode">☼ Dark</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="section" id="top">
+  <div class="prose">
+    <p class="eyebrow"><span>Reports under review · 11 February 2024 · 8 June 2025</span><span>Review released October 2026</span></p>
+    <h1>Callisto Review</h1>
+    <p class="lede">A peer review of the <em>Project Callisto</em> reports, which were released without one</p>
+    <p>In September 2026, a group calling itself Project Callisto published two reports, 381 and 226 pages long, on a website very much like this one. They describe nine years and an undisclosed sum spent looking for anomalous heat in palladium-deuterium systems. They end with the sentence <strong>"We therefore recommend terminating LENR research."</strong></p>
+    <p>Neither report names its sponsor. Neither was submitted to peer review, which is the standard for work published in technical journals and the minimum one would expect before a recommendation of that kind.</p>
+    <p>In October 2026, a group of researchers in condensed matter nuclear science, several of whom are the people whose experiments Callisto set out to replicate, read both reports in full and reviewed them against their own text, the primary literature, and the current peer-reviewed record. This page summarizes the review. The <a href="#review">full review</a> is available below.</p>
+    <p class="dl"><a href="CALLISTO_PEER_REVIEW.pdf" download>Download the review (PDF)</a><span class="dot">·</span><a href="review.html">Read it in the browser</a></p>
+  </div>
+</section>
+
+<section class="section" id="findings">
+  <div class="prose">
+    <h2>No evidence of peer review was detected.</h2>
+    <p>We searched a wide swath of the two reports, their summary PDF, and their website for the loading values, nuclear-product measurements, raw data, author names, and sponsor identification associated with scientific publication. Although we did not test every possible corner of the 607 pages, we consider our null result definitive in the spaces we did search.</p>
+    <p><strong>We found no helium measurement, no reported loading in the founding replication, no data release, and no referee. Furthermore, we found prosaic (non-nuclear) explanations for the report's conclusion: it is the closing memorandum of a private program, written for its sponsor, that failed to find excess heat under the conditions it chose to test.</strong></p>
+    <p>Read as a submission, the reports would not clear an editorial desk, much less peer review: six hundred pages, no data, no loading where it matters, no nuclear product, and a recommendation that outruns the evidence by the width of a field.</p>
+    <a class="cta" href="#review">Go to the review</a>
+  </div>
+</section>
+
+<section class="section" id="background">
+  <div class="prose">
+    <h2>Review scope</h2>
+    <p>The review had two lines of inquiry: what Callisto measured, and what it did not.</p>
+    <h3>What was measured</h3>
+    <p>Heat, with calorimeters the report itself rates at 1 to 10 mW for a pulse under ideal conditions and at a few percent of input in steady state. Gamma rays and neutrons, which the field has said since 1991 are absent. Loading, by resistance ratio, in some cells. More than 500 samples and 200,000 hours of calorimetry, mostly in the report's own cell designs rather than in anyone's published protocol.</p>
+    <h3>What was not measured</h3>
+    <p>Helium. Across 607 pages, neither report contains a single measurement of helium-4, helium-3 or tritium in an experiment. The pressure report converts the number itself: 1 joule of fusion heat is 0.5 picomoles of helium. A 10 mW excess for one week, in a sealed headspace of a few tens of millilitres, is about a thousand times the detection limit the report quotes for Miles. Callisto lists a Hiden mass spectrometer among its equipment and states that it can resolve helium-4 from deuterium. It never used it on a cell.</p>
+  </div>
+  <div class="figs" role="list" aria-label="Figures from the reports">
+    <div class="fig" role="listitem"><b>607</b><span>pages, two reports, one summary</span></div>
+    <div class="fig" role="listitem"><b>0</b><span>helium measurements</span></div>
+    <div class="fig" role="listitem"><b>81–86 %</b><span>loading in the McKubre replication (their Fig. 7.6), against the 0.9 they treat as the threshold</span></div>
+    <div class="fig" role="listitem"><b>0</b><span>data files released</span></div>
+    <div class="fig" role="listitem"><b>30</b><span>months between the decision to terminate and the release</span></div>
+  </div>
+</section>
+
+<section class="section" id="method">
+  <div class="prose">
+    <h2>Findings record</h2>
+    <p>Each finding below is checkable against the page numbers of the electrochemical report, which is more than can be said for a recommendation to terminate a field of research.</p>
+  </div>
+  <div class="record">
+    <article class="finding"><div class="k">Finding 1</div><div><h3>The nuclear product was never sampled.</h3><p>Hundreds of sealed cells ran for weeks. The instrument was in the building. Helium is immune to every calorimetric artifact the report catalogues: recombiner failure, RTD corrosion, electrolyte level, PEEK charring, diurnal swings. Miles, McKubre and ENEA measured it in the 1990s and 2000s on a fraction of the budget.</p><p class="ref">Electrochemical report pp. 14, 138; pressure report p. 9.</p></div></article>
+    <article class="finding"><div class="k">Finding 2</div><div><h3>The Fleischmann-Pons experiment was not run.</h3><p>Ten times the electrolyte concentration, open beakers with an RTD, cathodes specified by mass only, no reported loading, and durations of hours against the months the original required. The report classifies this itself as "more loosely based on literature reports", a few lines after claiming to have replicated "all major published electrochemical LENR experiments".</p><p class="ref">pp. 100, 185.</p></div></article>
+    <article class="finding"><div class="k">Finding 3</div><div><h3>The prerequisite was not met where it mattered.</h3><p>The report treats a loading of 0.9 as necessary. Its own Fig. 7.6 puts the McKubre replication at 81 to 86 %. Staker: "we concede our loadings did not remain as high as reported." Boss: 75 to 80 %. The cells that did exceed 0.9 were Callisto's own novel designs, with no helium sampled in them either. A null obtained under conditions the hypothesis says are insufficient is not evidence against the hypothesis.</p><p class="ref">pp. 90, 108, 119, 145.</p></div></article>
+    <article class="finding"><div class="k">Finding 4</div><div><h3>The error budget is the best case, quoted as the typical case.</h3><p>"1 to 10 mW" is pulse detectability under ideal conditions. The 100-cell array screens at 100 mW, was operated above its calibration range, and produced 64 % of all readings above threshold from one faulty sensor. The Barham replication detected at 3 % of input. Fleischmann and Pons are judged on their 1989 preliminary note while their 56-page 1990 calorimetry paper sits in Callisto's own bibliography.</p><p class="ref">pp. 24, 44, 104, 123.</p></div></article>
+    <article class="finding"><div class="k">Finding 5</div><div><h3>The field it recommends terminating is not the field it studied.</h3><p>Palladium, heavy water, a calorimeter: the experiment of 1989. Plasma stimulation, nanostructured gas-phase materials, permeation transmutation and the ion-beam hybrids now in Physical Review X and Nature Communications are untouched. Two peer-reviewed results of 2025 and 2026, both publicly funded, both bearing directly on the subject, are not cited in a report released in September 2026.</p><p class="ref">Sections 8.1 to 8.3 of the review.</p></div></article>
+    <article class="finding"><div class="k">Finding 6</div><div><h3>Held to its own list, the report fails it.</h3><p>Chapter 9 faults the field for "no rigorous peer review", single authors, conclusions "not supported by data" and details "made available only in personal communication". The report carries no author's name, redacted acknowledgements, no referee, no data, six pages removed without explanation, and replication sections that omit the loading and the cathode dimensions.</p><p class="ref">pp. 187–189, 225; pressure report pp. 17–22.</p></div></article>
+  </div>
+  <div class="prose" style="margin-top:2.5rem">
+    <blockquote>"Obviously, this is a belief, not a proven fact. It's very hard to prove a negative."<cite>Project Callisto, High Pressure Loading Final Report, p. 371, on its own conclusion</cite></blockquote>
+    <p>Physics has a recent cautionary tale about nulls of this kind. Before 1995 serious physicists argued that Bose-Einstein condensation of a dilute gas was impossible, and an excellent group tried caesium in a magnetic trap and failed, because that trap destroys the gas. Rubidium condensed in 1995 with the right atom in the right trap; caesium followed in 2003. The caesium null said nothing about whether condensates exist. Callisto ran the caesium experiment and concluded that condensation is impossible. It is the 1989 replications over again, with better funding.</p>
+  </div>
+</section>
+
+<section class="section" id="review">
+  <div class="prose">
+    <h2>The complete review.</h2>
+    <p>The review documents the reports' methods, loadings, calorimetry, replications, omissions, sponsor, timing and recommendation, with page references throughout, and makes a case of its own for why the field should be funded, and not only for heat.</p>
+  </div>
+  <div class="reports">
+    <div class="report">
+      <h3>Peer Review of the Project Callisto Reports on Cold Fusion</h3>
+      <p>Thirteen sections and twenty-three references. Calorimetry, loading, the nine replications in Callisto's own words, the evidence the report ignores, who wrote it and who paid, the timing of its release, and a plaidoyer.</p>
+      <div class="links"><a href="CALLISTO_PEER_REVIEW.pdf">Full review (PDF)</a><a href="review.html">Read in browser</a></div>
+      <p class="muted" style="margin-top:1rem">Dated October 2026. Reviewers listed below.</p>
+    </div>
+    <div class="report">
+      <h3>The reports under review</h3>
+      <p>Project Callisto, "High Pressure Loading Final Report" (11 February 2024) and "Electrochemical Loading Research Final Report" (4 September 2026), released 8 September 2026. We encourage readers to read them; everything in the review can be checked against them.</p>
+      <div class="links"><a href="https://callisto.report">callisto.report</a></div>
+      <p class="muted" style="margin-top:1rem">The reports publish no data. A partial or full release would allow this review to be completed.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="reviewers">
+  <div class="prose">
+    <h2>Reviewers</h2>
+    <p>This review depended on the physicists, electrochemists, engineers and experimentalists who have sustained the field, in some cases for thirty-seven years, under their own names. Some reviewers have chosen to remain anonymous, as in the reports under review.</p>
+  </div>
+  <div class="names" aria-label="Reviewers">
+    Jean-Paul Biberian<span class="dot">·</span>Francesco Celani<span class="dot">·</span>Daniel Fargue<span class="dot">·</span>Marc Fleury<span class="dot">·</span>Frank Gordon<span class="dot">·</span>David Nagel<span class="dot">·</span>Jacques Robert<span class="dot">·</span>Jacques Ruer<span class="dot">·</span>Edmund Storms<span class="dot">·</span>Paul Werbos<span class="dot">·</span>Paul Wilhelm<span class="dot">·</span><span class="redact" style="width:7.5em"></span><span class="dot">·</span><span class="redact" style="width:5.5em"></span><span class="dot">·</span><span class="redact" style="width:9em"></span><span class="dot">·</span><span class="redact" style="width:6.5em"></span><span class="dot">·</span><span class="redact" style="width:8em"></span>
+    <small>Reviewers are listed alphabetically by surname. Some reviewers have chosen to remain anonymous.</small>
+  </div>
+  <p class="thanks">Special thanks to Frank Gordon for suggesting that this be a peer review rather than a rebuttal, and to Michael Staker and Edmund Storms for answering our questions about the replications of their work.</p>
+</section>
+</main>
+
+<footer class="end">
+  <div class="in">
+    <div class="row"><span>Reports dated 11 February 2024 and 8 June 2025</span><a href="#top">Return to top ↑</a></div>
+    <div class="mid">Review released October 2026</div>
+    <p class="note">AI assisted with the design and wording of this landing page, and with the review. The reviewers did the physics.</p>
+    <div class="dedic">
+      <span>Callisto Review</span>
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22" fill="none" stroke="var(--accent)" stroke-width="2.5"/><path d="M14 32c6-10 30-10 36 0" fill="none" stroke="var(--ink-faint)" stroke-width="2"/><path d="M14 32c6 10 30 10 36 0" fill="none" stroke="var(--ink-faint)" stroke-width="2"/><circle cx="32" cy="32" r="3.5" fill="var(--accent)"/></svg>
+      <span>Solvitur ambulando</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme');
+  function cur(){ var t=root.getAttribute('data-theme'); if(t) return t; return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
+  function paint(){ btn.textContent = cur()==='dark' ? '☼ Light' : '☼ Dark'; }
+  btn.addEventListener('click',function(){ var n=cur()==='dark'?'light':'dark'; root.setAttribute('data-theme',n); try{localStorage.setItem('cr-theme',n)}catch(e){} paint(); });
+  try{ var s=localStorage.getItem('cr-theme'); if(s) root.setAttribute('data-theme',s);}catch(e){}
+  paint();
+})();
+</script>
+</body>
+</html>
