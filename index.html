@@ -17,6 +17,7 @@
   --rule:#b6bcb8; --rule-strong:#6d7672;
   --accent:#1d5d73; --accent-deep:#123e4e;
   --header-bg:#f4f5f1;
+  --bg-image:url("bg-light.jpg"); --bg-opacity:.8;
   --font:"IBM Plex Sans","Nebula Sans",Arial,Helvetica,sans-serif;
   --prose:48rem; --content:78rem; --pad:clamp(1.25rem,4vw,4rem);
   --space:clamp(2.5rem,4vw,4rem);
@@ -29,6 +30,8 @@
     --rule:#3f4944; --rule-strong:#727d77;
     --accent:#76b5ca; --accent-deep:#9bcedd;
     --header-bg:#111614;
+  --bg-image:url("bg-dark.jpg"); --bg-opacity:.45;
+    --bg-image:url("bg-dark.jpg"); --bg-opacity:.45;
   }
 }
 :root[data-theme="dark"]{
@@ -40,6 +43,15 @@
   --header-bg:#111614;
 }
 *{box-sizing:border-box}
+/* discreet background: the walking droplets, fixed, low opacity, fading out below the fold */
+body{position:relative}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:var(--bg-image) center 30%/cover no-repeat;
+  opacity:var(--bg-opacity);
+  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,1) 0,rgba(0,0,0,.75) 45vh,rgba(0,0,0,0) 110vh);
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,1) 0,rgba(0,0,0,.75) 45vh,rgba(0,0,0,0) 110vh)}
+@media (prefers-reduced-motion:no-preference){body::before{transition:opacity .4s}}
+
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:1.125rem;line-height:1.58;-webkit-font-smoothing:antialiased}
