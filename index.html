@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -11,36 +11,16 @@
 /* Layout: a deliberate mirror of callisto.report. Same paper, same ink, same accent, same 48rem prose column,
    same uppercase date eyebrow, same dotted name list with black bars. The joke is in the content. */
 :root{
-  color-scheme:light;
-  --paper:#f4f5f1; --paper-raised:#fbfcf9; --paper-inset:#e8ece8;
-  --ink:#121817; --ink-soft:#4d5653; --ink-faint:#626e68;
-  --rule:#b6bcb8; --rule-strong:#6d7672;
-  --accent:#1d5d73; --accent-deep:#123e4e;
-  --header-bg:#f4f5f1;
-  --bg-image:url("bg-light.jpg"); --bg-opacity:.8;
-  --font:"IBM Plex Sans","Nebula Sans",Arial,Helvetica,sans-serif;
-  --prose:48rem; --content:78rem; --pad:clamp(1.25rem,4vw,4rem);
-  --space:clamp(2.5rem,4vw,4rem);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    color-scheme:dark;
-    --paper:#111614; --paper-raised:#181e1b; --paper-inset:#202824;
-    --ink:#edf1ec; --ink-soft:#b8c0bb; --ink-faint:#8d9892;
-    --rule:#3f4944; --rule-strong:#727d77;
-    --accent:#76b5ca; --accent-deep:#9bcedd;
-    --header-bg:#111614;
-  --bg-image:url("bg-dark.jpg"); --bg-opacity:.45;
-    --bg-image:url("bg-dark.jpg"); --bg-opacity:.45;
-  }
-}
-:root[data-theme="dark"]{
   color-scheme:dark;
   --paper:#111614; --paper-raised:#181e1b; --paper-inset:#202824;
   --ink:#edf1ec; --ink-soft:#b8c0bb; --ink-faint:#8d9892;
   --rule:#3f4944; --rule-strong:#727d77;
   --accent:#76b5ca; --accent-deep:#9bcedd;
   --header-bg:#111614;
+  --bg-image:url("bg-dark.jpg"); --bg-opacity:.45;
+  --font:"IBM Plex Sans","Nebula Sans",Arial,Helvetica,sans-serif;
+  --prose:48rem; --content:78rem; --pad:clamp(1.25rem,4vw,4rem);
+  --space:clamp(2.5rem,4vw,4rem);
 }
 *{box-sizing:border-box}
 /* discreet background: the walking droplets, fixed, low opacity, fading out below the fold */
@@ -50,7 +30,6 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   opacity:var(--bg-opacity);
   -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,1) 0,rgba(0,0,0,.75) 45vh,rgba(0,0,0,0) 110vh);
   mask-image:linear-gradient(to bottom,rgba(0,0,0,1) 0,rgba(0,0,0,.75) 45vh,rgba(0,0,0,0) 110vh)}
-@media (prefers-reduced-motion:no-preference){body::before{transition:opacity .4s}}
 
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -142,7 +121,6 @@ footer.end{border-top:1px solid var(--rule);margin-top:var(--space)}
       <a class="hide-sm" href="#method">Method</a>
       <a href="#review">Review</a>
       <a class="hide-sm" href="#reviewers">Reviewers</a>
-      <button id="theme" type="button" aria-label="Toggle dark mode">☼ Dark</button>
     </nav>
   </div>
 </header>
@@ -254,16 +232,5 @@ footer.end{border-top:1px solid var(--rule);margin-top:var(--space)}
   </div>
 </footer>
 
-<script>
-(function(){
-  var root=document.documentElement, btn=document.getElementById('theme');
-  function cur(){ var t=root.getAttribute('data-theme'); if(t) return t; return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
-  function paint(){ btn.textContent = cur()==='dark' ? '☼ Light' : '☼ Dark'; }
-  btn.addEventListener('click',function(){ var n=cur()==='dark'?'light':'dark'; root.setAttribute('data-theme',n); try{localStorage.setItem('cr-theme',n)}catch(e){} paint(); });
-  var saved=null; try{ saved=localStorage.getItem('cr-theme'); }catch(e){}
-  root.setAttribute('data-theme', saved || 'dark');   /* dark by default; the button still allows light */
-  paint();
-})();
-</script>
 </body>
 </html>
